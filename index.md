@@ -13,7 +13,7 @@ The creation of this project is intended to:
 - learn more about the economic resilience and unity of a nation during moments of crisis
 
 ### Tables/column variables used
-```
+
 - COUNTRIES: country_unique_ID, countries where disaster struck
 
 - NATURAL DISASTER TYPES: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
@@ -32,7 +32,6 @@ The creation of this project is intended to:
 
 - SUPPORT: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
 
-```
 
 ```markdown
 Syntax highlighted code block
