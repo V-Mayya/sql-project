@@ -12,44 +12,64 @@ The creation of this project is intended to:
 - find out which methods were best to recover from the aftermath of a disaster 
 - learn more about the economic resilience and unity of a nation during moments of crisis
 
-### Tables/column variables used
+### Setting up tables and columns
 
-COUNTRIES: country_unique_ID, countries where disaster struck
+**COUNTRIES**: country_unique_ID, countries where disaster struck
 
-NATURAL DISASTER TYPES: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
+**NATURAL DISASTER TYPES**: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
 
-EVENTS: dates of natural disasters, country_unique _ID,  natural_disaster_unique_ID, magnitude of each event
+**EVENTS**: dates of natural disasters, country_unique _ID,  natural_disaster_unique_ID, magnitude of each event
 
-FATALITIES (table for each year potentially): number of fatalities, species impacted, dates of disaster, country_unique_ID 
+**FATALITIES**: number of fatalities, species impacted, dates of disaster, country_unique_ID 
 
-OTHER IMPACTS: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
+**OTHER IMPACTS**: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
 
-RECOVERY: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
+**RECOVERY**: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
 
-ECONOMIC IMPACT: 
+**ECONOMIC IMPACT**: 
 1. Table 1: economic damage in terms of total monetary impact/revenue lost by businesses, country_unique_ID, dates of natural disasters
 
 2. Table 2: disaster losses as a % of global GDP, country_unique_ID, dates of natural disasters 
 
-- SUPPORT: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
+**SUPPORT**: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
 
+Creating and inserting data into the tables:
 
-```markdown
-Syntax highlighted code block
+```
+CREATE DATABASE natural disasters;
 
-# Header 1 1
-## Header 2
-### Header 3
+USE natural disasters;
+```
+Some of the tables will have primary and foreign constraints. The first table is for countries with country_unique_ID to uniquely identify all lists of countries. 
 
-- Bulleted
-- List
+```
+-- Table 1
+CREATE TABLE countries (
+  country_unique_ID INT,
+  country VARCHAR(35), 
+  CONSTRAINT
+  PK_country_unique_ID
+  PRIMARY KEY
+  (country_unique_ID)); 
+```
+The next table lists the types of natural disasters along with a unique ID as well. 
 
-1. Numbered
-2. List
+```
+-- Table 2
+CREATE TABLE types (
+  natural_disaster_ID INT,
+  type VARCHAR(40), 
+  CONSTRAINT
+  PK_natural_disaster_ID
+  PRIMARY KEY
+  (natural_disaster_ID)); 
+```
+Table 3 (events): 
 
-**Bold** and _Italic_ and `Code` text
+```
+CREATE TABLE types (
 
-[Link](url) and ![Image](src)
+ ); 
 ```
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
