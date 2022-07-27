@@ -33,14 +33,14 @@ The creation of this project is intended to:
 
 **SUPPORT**: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
 
-Creating and inserting data into the tables:
+Creating the database to use:
 
 ```
 CREATE DATABASE natural disasters;
 
 USE natural disasters;
 ```
-Some of the tables will have primary and foreign constraints. The first table is for countries with country_unique_ID to uniquely identify all lists of countries. 
+Some of the tables will have primary and foreign constraints. The first table is for countries with country_unique_ID to uniquely identify all lists of countries. Creating and inserting data into the tables:
 
 ```
 -- Table 1
