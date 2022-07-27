@@ -1,4 +1,4 @@
 # sql-project
 Natural Disasters SQL Project
 
-Find out more in the index.md file!
+Details in the index.md file.
