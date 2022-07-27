@@ -14,20 +14,21 @@ The creation of this project is intended to:
 
 ### Tables/column variables used
 
-- COUNTRIES: country_unique_ID, countries where disaster struck
+COUNTRIES: country_unique_ID, countries where disaster struck
 
-- NATURAL DISASTER TYPES: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
+NATURAL DISASTER TYPES: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
 
-- EVENTS: dates of natural disasters, country_unique _ID,  natural_disaster_unique_ID, magnitude of each event
+EVENTS: dates of natural disasters, country_unique _ID,  natural_disaster_unique_ID, magnitude of each event
 
-- FATALITIES (table for each year potentially): number of fatalities, species impacted, dates of disaster, country_unique_ID 
+FATALITIES (table for each year potentially): number of fatalities, species impacted, dates of disaster, country_unique_ID 
 
-- OTHER IMPACTS: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
+OTHER IMPACTS: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
 
-- RECOVERY: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
+RECOVERY: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
 
-- ECONOMIC IMPACT: 
+ECONOMIC IMPACT: 
 1. Table 1: economic damage in terms of total monetary impact/revenue lost by businesses, country_unique_ID, dates of natural disasters
+
 2. Table 2: disaster losses as a % of global GDP, country_unique_ID, dates of natural disasters 
 
 - SUPPORT: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
