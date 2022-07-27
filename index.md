@@ -1,13 +1,31 @@
-## Welcome to GitHub Pages
+## Natural Disasters 
+CFG Project
 
-Y1ou can use the [editor on GitHub](https://github.com/V-Mayya/sql-project/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Given the recent wildfires in Australia, heat wave in Europe and other natural disasters over the years, my project will be exploring the impact and methods that nations have used to deal with the aftermath of such disasters. It will specifically focus on types of key natural disasters during the years of 2000-2022 (along with their magnitudes), events, number of fatalities, the recovery period, economic impact, support after the disaster and others.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The idea to create a project based around natural disasters was developed after reading the book 'Extreme Economies'. One of the incidents described in the book was about how Aceh (a province of Indonesia) managed to resume its daily operations almost immediately after disaster struck. The economic resilience and methods the region used to dampen the impact of the natural disaster inspired me to create the project. 
 
-### Markdown
+### Uses of the Project
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The creation of this project is intended to: 
+- understand the impact of climate change and natural disasters on individuals and wildlife
+- countries learn from others by finding out which methods were best to recover from the aftermath of a disaster 
+- learn about the economic resilience and unity of a nation during moments of crisis
 
+### Tables/column variables used
+``
+- COUNTRIES: country_unique_ID, countries where disaster struck
+- NATURAL DISASTER TYPES: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
+- EVENTS: dates of natural disasters, country_unique _ID,  natural_disaster_unique_ID, magnitude of each event
+- FATALITIES (table for each year potentially): number of fatalities, species impacted, dates of disaster, country_unique_ID 
+- OTHER IMPACTS: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
+- RECOVERY: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
+- ECONOMIC IMPACT: 
+-> Table 1: economic damage in terms of total monetary impact/revenue lost by businesses, country_unique_ID, dates of natural disasters
+-> Table 2: disaster losses as a % of global GDP, country_unique_ID, dates of natural disasters 
+- SUPPORT: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
+
+``
 ```markdown
 Syntax highlighted code block
 
