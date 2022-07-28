@@ -182,25 +182,25 @@ Learning more about Japan's economic resilience can help other countries build p
 SELECT country FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM events); 
 
 --Minimum number of fatalities
-And same for min also: SELECT country FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM events);  
+SELECT country FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM events);  
 
 ```
 
 Implications and analysis: 
 
-###Further Questions/Extensions and Limitations 
+### Further Questions/Extensions and Limitations 
 
 Limitations: 
 - Limitation could be natural disasters accounts for only small number of fatalities/gdp loss compared to other things but still equally impactful 
 - Other types of disasters not included? 
 - Impact of natural disasters can be measured not only through number of fatalities, displaced individuals and economic impact but also through other ways such as number of business re-openings after disaster, population growth,  
 
-###References 
+### References 
 - https://www.emdat.be/
 - https://ourworldindata.org/natural-disasters
 - https://cdd.publicsafety.gc.ca/srchpg-eng.aspx?dynamic=false
 - https://www.weforum.org/agenda/2022/04/climate-change-global-gdp-risk/#:~:text=Over%20the%20past%2010%20years,to%20insurance%20firm%20Swiss%20Re
 - https://www.forbes.com/sites/rogerpielke/2019/10/31/surprising-good-news-on-the-economic-costs-of-disasters/?sh=867d75b1952e 
 
-#Connect with me
+# Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
