@@ -160,12 +160,12 @@ CREATE TABLE economic_impact_2 (
   FOREIGN KEY
   (country_unique_ID)); 
 ```
-###Queries and Subqueries for Data Analysis
+### Queries for Data Analysis
 
 1. Total economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
-SELECT SUM(total_monetary_impact) FROM economic_impact_1 WHERE country_unique_ID =  ; 
+SELECT SUM(total_monetary_impact), country_unique_ID FROM economic_impact_1 WHERE country_unique_ID = .. GROUP BY country_unique_ID ORDER BY total_monetary_impact DESC; 
 ```
 
 Implications and analysis: Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
@@ -179,14 +179,36 @@ Learning more about Japan's economic resilience can help other countries build p
 
 ```
 -- Maximum number of fatalities
-SELECT country FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM events); 
+SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM events); 
 
 --Minimum number of fatalities
-SELECT country FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM events);  
+SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM events);  
 
 ```
 
 Implications and analysis: 
+
+
+
+4. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes 
+
+```
+SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
+-- (or no need after group by)
+``` 
+
+Implications and analysis: According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of species impacted (in terms of types such as birds, fish - 2) for all situations where number of species impacted were greater than 3. 
+
+This can then be compared with total number of earthquakes of magnitude greater than 6 for each country (Japan in this example) using the following query.
+
+``` 
+SELECT COUNT(country_unique_ID) WHERE magnitude >= 6 AND country_unique_ID = .. ; 
+
+``` 
+
+A percentage can be established that will demonstrate the % that more than 3 different species of wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In Japan, this amounts to around: 
+
+Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
 ### Further Questions/Extensions and Limitations 
 
@@ -201,6 +223,7 @@ Limitations:
 - https://cdd.publicsafety.gc.ca/srchpg-eng.aspx?dynamic=false
 - https://www.weforum.org/agenda/2022/04/climate-change-global-gdp-risk/#:~:text=Over%20the%20past%2010%20years,to%20insurance%20firm%20Swiss%20Re
 - https://www.forbes.com/sites/rogerpielke/2019/10/31/surprising-good-news-on-the-economic-costs-of-disasters/?sh=867d75b1952e 
+- https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/
 
-# Connect with me
+### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
