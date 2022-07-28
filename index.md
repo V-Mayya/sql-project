@@ -33,8 +33,6 @@ The creation of this project is intended to:
 
 **SUPPORT**: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
 
-Creating the database to use:
-
 ```
 CREATE DATABASE natural disasters;
 
@@ -86,9 +84,60 @@ CREATE TABLE events (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
   country_unique_ID INT,
-  date DATE,
+  date DATE
   CONSTRAINT
   FK_countryanddate_ID
   FOREIGN KEY
   (country_unique_ID, date)); 
+```
+
+Table 5 (other impacts): 
+
+```
+CREATE TABLE other_impacts (
+  date DATE,
+  country_unique_ID INT,
+  displaced_or_injured INT
+  CONSTRAINT
+  FK_countryanddate_ID
+  FOREIGN KEY
+  (country_unique_ID, date)); 
+```
+
+Table 6 (recovery):
+
+```
+CREATE TABLE recovery (
+  date DATE,
+  country_unique_ID INT,
+  days_to_recover INT,
+  method_to_deal_with_disaster VARCHAR(100) 
+  CONSTRAINT
+  FK_countryanddate_ID
+  FOREIGN KEY
+  (country_unique_ID, date)); 
+```
+
+Table 7 (economic impact):
+
+```
+CREATE TABLE economic_impact_1 (
+  total_monetary_impact INT,
+  date DATE,
+ 
+  CONSTRAINT
+  FK_countryanddate_ID
+  FOREIGN KEY
+  (country_unique_ID, date)); 
+  
+ CREATE TABLE economic_impact_2 (
+  total_monetary_impact DATE,
+  country_unique_ID INT,
+  days_to_recover INT,
+  method_to_deal_with_disaster VARCHAR(100) 
+  CONSTRAINT
+  FK_countryanddate_ID
+  FOREIGN KEY
+  (country_unique_ID, date)); 
+
 ```
