@@ -124,20 +124,33 @@ Table 7 (economic impact):
 CREATE TABLE economic_impact_1 (
   total_monetary_impact INT,
   date DATE,
- 
+  country_unique_ID INT
   CONSTRAINT
   FK_countryanddate_ID
   FOREIGN KEY
   (country_unique_ID, date)); 
   
  CREATE TABLE economic_impact_2 (
-  total_monetary_impact DATE,
+  %_of_global_GDP INT,
   country_unique_ID INT,
-  days_to_recover INT,
-  method_to_deal_with_disaster VARCHAR(100) 
+  date DATE
   CONSTRAINT
   FK_countryanddate_ID
   FOREIGN KEY
   (country_unique_ID, date)); 
 
 ```
+
+Table 8 (support):
+
+```
+CREATE TABLE economic_impact_2 (
+  organisations VARCHAR(150),
+  amount VARCHAR(100),
+  country_unique_ID INT 
+  CONSTRAINT
+  FK_country_ID
+  FOREIGN KEY
+  (country_unique_ID)); 
+```
+
