@@ -190,7 +190,7 @@ Implications and analysis:
 
 
 
-4. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes 
+3. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes 
 
 ```
 SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
@@ -203,7 +203,6 @@ This can then be compared with total number of earthquakes of magnitude greater 
 
 ``` 
 SELECT COUNT(country_unique_ID) WHERE magnitude >= 6 AND country_unique_ID = .. ; 
-
 ``` 
 
 A percentage can be established that will demonstrate the % that more than 3 different species of wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In Japan, this amounts to around: 
