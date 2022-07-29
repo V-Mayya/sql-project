@@ -21,13 +21,13 @@ The creation of this project is intended to:
 **EVENTS**: dates of natural disasters, country_unique_ID,  natural_disaster_unique_ID, magnitude of each event
 
 Note: Magnitudes have been determined on an integer scale by -
-- *Earthquake: Earthquake Magnitude Scale 
-- *Hurricane: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
-- *Tsunami: Richter Scale/Tsunami or Seismic Magnitude Scale 
-- *Volcanic Activity: Volcanic Exposivity Index (**VEI**) 
-- *Drought: Palmer Drought Severity Index 
-- *Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
-- *Flood: **DFO** Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
+- *Earthquake*: Earthquake Magnitude Scale 
+- *Hurricane*: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
+- *Tsunami*: Richter Scale/Tsunami or Seismic Magnitude Scale 
+- *Volcanic Activity*: Volcanic Exposivity Index (**VEI**) 
+- *Drought*: Palmer Drought Severity Index 
+- *Wildfire*: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
+- *Flood*: **DFO** Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
@@ -257,7 +257,7 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 
 ``` 
 
-- **Number of hurricanes/storms/cyclones by country*
+- **Number of hurricanes/storms/cyclones by country**
 
 As an example, we can compare the number of hurricanes during the period of 2000-2022 to find which country has had the highest number of hurricanes. 
 
