@@ -14,7 +14,7 @@ The creation of this project is intended to:
 
 ### Setting up tables and columns
 
-**COUNTRIES**: country_unique_ID, countries where disaster struck
+**COUNTRIES**: country_unique_ID, country_code, countries where disaster struck
 
 **NATURAL DISASTER TYPES**: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
 
@@ -44,7 +44,8 @@ Some of the tables will have primary and foreign constraints. The first table is
 -- Table 1
 CREATE TABLE countries (
   country_unique_ID INT,
-  country VARCHAR(35), 
+  country_code VARCHAR(10),
+  country VARCHAR(35) 
   CONSTRAINT
   PK_country_unique_ID
   PRIMARY KEY
@@ -76,12 +77,12 @@ Table 3 (events):
 CREATE TABLE events (
   date DATE,
   natural_disaster_ID INT,
-  country_unique_ID INT,
+  country_code VARCHAR(10),
   magnitude DEC(10,2)
   CONSTRAINT
-  FK_naturaldisasterandcountry_ID
+  FK_naturaldisasterandcountry_code
   FOREIGN KEY
-  (natural_disaster_ID, country_unique_ID)); 
+  (natural_disaster_ID, country_code)); 
 ```
 
 Table 4 (fatalities):
@@ -90,12 +91,12 @@ Table 4 (fatalities):
 CREATE TABLE events (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
-  country_unique_ID INT,
+  country_code VARCHAR(10),
   date DATE
   CONSTRAINT
-  FK_countryanddate_ID
+  FK_countrycode_anddate
   FOREIGN KEY
-  (country_unique_ID, date)); 
+  (country_code, date)); 
 ```
 
 Table 5 (other impacts): 
@@ -103,12 +104,12 @@ Table 5 (other impacts):
 ```
 CREATE TABLE other_impacts (
   date DATE,
-  country_unique_ID INT,
+  country_code VARCHAR(10),
   displaced_or_injured INT
   CONSTRAINT
-  FK_countryanddate_ID
+  FK_countrycode_anddate
   FOREIGN KEY
-  (country_unique_ID, date)); 
+  (country_code, date)); 
 ```
 
 Table 6 (recovery):
@@ -116,13 +117,13 @@ Table 6 (recovery):
 ```
 CREATE TABLE recovery (
   date DATE,
-  country_unique_ID INT,
+  country_code VARCHAR(10),
   days_to_recover INT,
   method_to_deal_with_disaster VARCHAR(100) 
   CONSTRAINT
-  FK_countryanddate_ID
+  FK_countrycode_anddate
   FOREIGN KEY
-  (country_unique_ID, date)); 
+  (country_code, date)); 
 ```
 
 Tables 7 and 8 (economic impact):
@@ -131,11 +132,11 @@ Tables 7 and 8 (economic impact):
 CREATE TABLE economic_impact_1 (
   total_monetary_impact INT,
   date DATE,
-  country_unique_ID INT
+  country_code VARCHAR(10) 
   CONSTRAINT
-  FK_countryanddate_ID
+  FK_countrycode_anddate
   FOREIGN KEY
-  (country_unique_ID, date)); 
+  (country_code, date)); 
   
  CREATE TABLE economic_impact_2 (
   %_of_global_GDP INT,
