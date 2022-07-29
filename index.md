@@ -27,6 +27,7 @@ Note: Magnitudes have been determined on an integer scale by -
 - Volcanic Activity: Volcanic Exposivity Index (VEI) (https://www.usgs.gov/media/images/volcanic-explosivity-index-vei-a-numeric-scale-measures-t)
 - Drought: Palmer Drought Severity Index (https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi) 
 - Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on (https://www.nwcg.gov/term/glossary/size-class-of-fire)
+- Flood: DFO Flood magnitude scale (https://floodobservatory.colorado.edu/SatelliteGaugingSites/DFOFloodIndexExplanation.pdf) or Flood magnitude = log (Duration × Severity × Area Affected)
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
@@ -86,7 +87,7 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5)
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('
   
 ```
 
@@ -136,7 +137,10 @@ CREATE TABLE economic_impact_1 (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
- INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40, '2004-10-23', 'JP'), ( 
+ INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40, '2004-10-23', 'JP'), (173, '2005-08-23', 'US'), (107,'2008-05-12', 
+ 'CN'), (253, '2011-03-11', 'JP'), (48, '2011-07-25', 'TH'), (59, '2012-10-22', 'US'), (105, '2017-08-17', 'US'), (75, 
+ 
+ -- Note: Data from the international disasters database EM-DAT
   
  CREATE TABLE economic_impact_2 
   %_of_global_GDP DEC(10,2),
@@ -159,7 +163,7 @@ CREATE TABLE support (
 ```
 ### Queries for Data Analysis
 
-1. **Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
+**1. Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
 
 ```
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
@@ -176,6 +180,7 @@ Learning more about Japan's economic resilience can help other countries build p
 SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP desc; 
 ```
 | region | %_of_global_GDP | 
+
 | -------------------- | ---| 
 
 | South Asia | 15 | 
@@ -196,7 +201,7 @@ There has been a lot of research done in this area:
 - https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
 - https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
-2. **Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
+**2. Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
 
 ```
 -- Maximum number of fatalities
@@ -210,7 +215,7 @@ SELECT country AS 'country with min. fatalities' FROM countries WHERE country_un
 
 
 
-3. **Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
+**3. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
 
 ```
 SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
@@ -230,7 +235,7 @@ A percentage can be established that will demonstrate the % that more than 3 dif
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
-4. **Number of massively destructive earthquakes (magnitude >= 6.0) by country**
+**4. Number of massively destructive earthquakes (magnitude >= 6.0) by country**
 
 ``` 
 SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
@@ -252,9 +257,20 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 
 ``` 
 
+***5. Number of hurricanes/storms/cyclones by country*
+
+As an example, we can compare the number of hurricanes during the period of 2000-2022 to find which country has had the highest number of hurricanes. 
+
+``` 
+SELECT COUNT(country_code), country_code AS 'Number of Hurricanes' FROM events WHERE natural_disaster_ID = 7 GROUP BY country_code ORDER BY COUNT(country_code) desc;
+
+``` 
+... like U.S.A had the highest number of hurricanes during the period of 2000-2022. 
+
 ### Further Questions/Extensions and Limitations 
 
 Extensions:
+- Would be interesting to conduct data analysis related to climate change (such as GHG or carbon emissions, sea level rises) months prior to the disaster to find any causal effects of climate change on increasing the risk of disaster 
 - Include all countries by region to link to economic impact table 2
 
 Limitations: 
@@ -272,6 +288,11 @@ Limitations:
 - https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blame/master/all/all.csv
 - https://www.med.or.jp/english/pdf/2005_07/334_340.pdf
 -https://www.sciencedirect.com/science/article/pii/S2212094721000335#:~:text=For%20example%2C%20Hurricane%20Katrina%2C%20which,nearby%20in%20Mississippi%20as%20a
+- https://www.britannica.com/event/Sichuan-earthquake-of-2008
+- https://education.nationalgeographic.org/resource/tohoku-earthquake-and-tsunami
+- https://rmets.onlinelibrary.wiley.com/doi/10.1002/wea.2133
+- https://www.nationalgeographic.com/environment/article/hurricane-sandy
+- https://www.weather.gov/hgx/hurricaneharvey
 
 ### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
