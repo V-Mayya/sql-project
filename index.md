@@ -21,13 +21,13 @@ The creation of this project is intended to:
 **EVENTS**: dates of natural disasters, country_unique_ID,  natural_disaster_unique_ID, magnitude of each event
 
 Note: Magnitudes have been determined on an integer scale by -
-- *Earthquake*: Earthquake Magnitude Scale 
-- *Hurricane*: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
-- *Tsunami*: Richter Scale/Tsunami or Seismic Magnitude Scale 
-- *Volcanic Activity*: Volcanic Exposivity Index (**VEI**) 
-- *Drought*: Palmer Drought Severity Index 
-- *Wildfire*: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
-- *Flood*: **DFO** Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
+- Earthquake: Earthquake Magnitude Scale 
+- Hurricane: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
+- Tsunami: Richter Scale/Tsunami or Seismic Magnitude Scale 
+- Volcanic Activity: Volcanic Exposivity Index (**VEI**) 
+- Drought: Palmer Drought Severity Index 
+- Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
+- Flood: **DFO** Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
@@ -163,7 +163,7 @@ CREATE TABLE support (
 ```
 ### Queries for Data Analysis
 
-- **Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
+- Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
@@ -201,7 +201,7 @@ There has been a lot of research done in this area:
 - https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
 - https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
-- **Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
+- Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows
 
 ```
 -- Maximum number of fatalities
@@ -215,7 +215,7 @@ SELECT country AS 'country with min. fatalities' FROM countries WHERE country_un
 
 
 
-- **Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
+- Number of species of wildlife impacted in countries that have had moderate to severe earthquakes
 
 ```
 SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
@@ -235,7 +235,7 @@ A percentage can be established that will demonstrate the % that more than 3 dif
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
-- **Number of massively destructive earthquakes (magnitude >= 6.0) by country**
+- Number of massively destructive earthquakes (magnitude >= 6.0) by country
 
 ``` 
 SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
@@ -257,7 +257,7 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 
 ``` 
 
-- **Number of hurricanes/storms/cyclones by country**
+- Number of hurricanes/storms/cyclones by country
 
 As an example, we can compare the number of hurricanes during the period of 2000-2022 to find which country has had the highest number of hurricanes. 
 
