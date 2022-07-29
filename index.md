@@ -126,8 +126,7 @@ CREATE TABLE economic_impact_1 (
   %_of_global_GDP DEC(10,2),
   region VARCHAR(100)); 
   
-  INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('
-
+  INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
 
 -- Note: the above data is a rough estimate taken from the S&P Global Ratings graph 
 ```
@@ -144,7 +143,7 @@ CREATE TABLE support (
 ```
 ### Queries for Data Analysis
 
-1. Total economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
+1. Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
@@ -156,6 +155,24 @@ If a country has been able to sustain its economy well despite large monetary da
 
 In the case of Japan, total economic damage of major natural disasters during the period was around .... Japan's economy as of 2022 is ...
 Learning more about Japan's economic resilience can help other countries build plans and policies to deal with such issues. 
+
+```
+SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP desc; 
+
+| region | %_of_global_GDP | 
+| -------------------- | ---| 
+| South Asia | 15 | 
+| Central Asia | 6.6 |
+| Sub-Saharan Africa | 6.1 |
+| Middle East and North Africa | 5.7 | 
+| East Asia and Pacific | 4.7 |
+| World | 4.0 |
+| Latin America and Caribbean | 3.0 |
+| Europe | 0.7 |
+```
+The data demonstrates how the impact of climate change that has resulted in natural disasters has had varying effects based on different regions. According to S&P Global Ratings, South Asia is around 10 times more exposed to the economic impact of climate change compared to Europe. 'Climate change could see 4% of global annual economic output lost by 2050 and hit many poorer parts of the world disproportionately hard, a new study of 135 countries has estimated.' By ordering the data, it can observed that South Asia has the highest disaster losses as a % of GDP with Central Asia just below. 
+
+All of these facts highlight the importance of dealing with climate change and economic support that must be offered to Asian economies. 
 
 2. Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows
 
