@@ -20,6 +20,17 @@ The creation of this project is intended to:
 
 **EVENTS**: dates of natural disasters, country_unique_ID,  natural_disaster_unique_ID, magnitude of each event
 
+Note: Magnitudes have been determined on an integer scale by -
+- Earthquake: Earthquake Magnitude Scale (https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/) 
+- Hurricane: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
+- Tsunami: Richter Scale/Tsunami or Seismic Magnitude Scale (https://www.sms-tsunami-warning.com/pages/richter-scale)
+- Volcanic Activity: Volcanic Exposivity Index (VEI) (https://www.usgs.gov/media/images/volcanic-explosivity-index-vei-a-numeric-scale-measures-t)
+- Drought: Palmer Drought Severity Index (https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi) 
+- Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on (https://www.nwcg.gov/term/glossary/size-class-of-fire)
+- 
+
+Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
+
 **FATALITIES**: number of fatalities, species impacted, dates of disaster, country_unique_ID 
 
 **OTHER IMPACTS**: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
@@ -27,7 +38,7 @@ The creation of this project is intended to:
 **RECOVERY**: dates of disaster, country_unique_ID, number of days for complete recovery, method country used to deal with aftermath of disaster
 
 **ECONOMIC IMPACT**: 
-1. Table 1: economic damage in terms of total monetary impact/revenue lost by businesses, country_unique_ID, dates of natural disasters
+1. Table 1: economic damage in terms of total monetary impact/revenue lost by businesses (in billions of dollars), country_unique_ID, dates of natural disasters
 
 2. Table 2: disaster losses as a % of global GDP, country_unique_ID, dates of natural disasters 
 
@@ -60,7 +71,7 @@ CREATE TABLE types (
   type VARCHAR(40), 
   CONSTRAINT PK_natural_disaster_ID PRIMARY KEY (natural_disaster_ID)); 
   
-INSERT INTO types (natural_disaster_ID, type) Values (1, 'Drought'), (2, 'Earthquake'), (3, 'Extreme Temperature'), (4, 'Flood'), (5, 'Landslide'), (6, 'Mass Movement'), (7, 'Storm/Cyclones'), (8, 'Volcanic activity'), (9, 'Wildfire'), (10, 'Tsunami'); 
+INSERT INTO types (natural_disaster_ID, type) Values (1, 'Drought'), (2, 'Earthquake'), (3, 'Extreme Temperature'), (4, 'Flood'), (5, 'Landslide'), (6, 'Mass Movement'), (7, 'Storm/Cyclone/Hurricane'), (8, 'Volcanic activity'), (9, 'Wildfire'), (10, 'Tsunami'); 
 
 ```
 
@@ -74,6 +85,10 @@ CREATE TABLE events (
   magnitude DEC(10,2), 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
+  
+  
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5)
+  
 ```
 
 Table 4 (fatalities):
@@ -122,11 +137,13 @@ CREATE TABLE economic_impact_1 (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
- CREATE TABLE economic_impact_2 (
+ INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40, '2004-10-23', 'JP'), ( 
+  
+ CREATE TABLE economic_impact_2 
   %_of_global_GDP DEC(10,2),
   region VARCHAR(100)); 
   
-  INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
+ INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
 
 -- Note: the above data is a rough estimate taken from the S&P Global Ratings graph 
 ```
@@ -143,7 +160,7 @@ CREATE TABLE support (
 ```
 ### Queries for Data Analysis
 
-1. Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
+1. **Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
 
 ```
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
@@ -179,7 +196,7 @@ There has been a lot of research done in this area:
 - https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
 - https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
-2. Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows
+2. **Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
 
 ```
 -- Maximum number of fatalities
@@ -190,17 +207,17 @@ SELECT country AS 'country with min. fatalities' FROM countries WHERE country_un
 
 ```
 
-Implications and analysis: 
 
 
-3. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes 
+
+3. **Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
 
 ```
 SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
 -- (or no need after group by)
 ``` 
 
-Implications and analysis: According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of species impacted (in terms of types such as birds, fish - 2) for all situations where number of species impacted were greater than 3. 
+According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of species impacted (in terms of types such as birds, fish - 2) for all situations where number of species impacted were greater than 3. 
 
 This can then be compared with total number of earthquakes of magnitude greater than 6 for each country (Japan in this example) using the following query.
 
@@ -213,7 +230,7 @@ A percentage can be established that will demonstrate the % that more than 3 dif
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
-4. Number of massively destructive earthquakes (magnitude >= 6.0) by country
+4. **Number of massively destructive earthquakes (magnitude >= 6.0) by country**
 
 ``` 
 SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
@@ -222,7 +239,7 @@ SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude 
 Output: 
 
 
-Implications and Analysis: From the output, it can be observed that ... country had the highest number of destructive earthquakes during the period of 2000-2022. ....
+From the output, it can be observed that ... country had the highest number of destructive earthquakes during the period of 2000-2022. ....
 
 ``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
@@ -253,6 +270,8 @@ Limitations:
 - https://www.forbes.com/sites/rogerpielke/2019/10/31/surprising-good-news-on-the-economic-costs-of-disasters/?sh=867d75b1952e 
 - https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/
 - https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blame/master/all/all.csv
+- https://www.med.or.jp/english/pdf/2005_07/334_340.pdf
+-https://www.sciencedirect.com/science/article/pii/S2212094721000335#:~:text=For%20example%2C%20Hurricane%20Katrina%2C%20which,nearby%20in%20Mississippi%20as%20a
 
 ### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
