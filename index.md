@@ -169,7 +169,7 @@ CREATE TABLE support (
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
 ```
 
-Implications and analysis: Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
+Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
 
 If a country has been able to sustain its economy well despite large monetary damages due to natural disasters, other countries can try utilising methods the country has used to cope with the aftermath of the disaster. 
 
@@ -197,9 +197,11 @@ The data demonstrates how the impact of climate change that has resulted in natu
 All of these facts highlight the importance of dealing with climate change and economic support that must be offered to Asian economies. It is difficult to find a solution that can be used for all regions. However, certain measures such as bringing about awareness of disaster risk management, analysing certain impacts (job losses, tax revenue loss and others), developing strategic plans considering various stakeholders and others can help mitigate the impact. 
 
 There has been a lot of research done in this area:
-- https://www.journals.uchicago.edu/doi/full/10.1093/reep/rez004 
-- https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
-- https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
+https://www.journals.uchicago.edu/doi/full/10.1093/reep/rez004 
+
+https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
+
+https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
 - Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows
 
