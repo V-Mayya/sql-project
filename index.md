@@ -27,7 +27,6 @@ Note: Magnitudes have been determined on an integer scale by -
 - Volcanic Activity: Volcanic Exposivity Index (VEI) (https://www.usgs.gov/media/images/volcanic-explosivity-index-vei-a-numeric-scale-measures-t)
 - Drought: Palmer Drought Severity Index (https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi) 
 - Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on (https://www.nwcg.gov/term/glossary/size-class-of-fire)
-- 
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
