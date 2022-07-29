@@ -48,7 +48,8 @@ CREATE TABLE countries (
   country VARCHAR(35),  
   CONSTRAINT PK_country_unique_ID PRIMARY KEY (country_unique_ID)); 
   
-INSERT INTO countries (country_unique_ID, country_code, country) Values (1, 'AF', Afghanistan'),(2,'AL' 'Albania'),('3', 'DZ', 'Algeria'),('4', 'AS', 'American Samoa'),('5', 'AD', 'Andorra'),('6', 'AO', 'Angola'),"AI|Anguilla","AQ|Antarctica","AG|Antigua And Barbuda","AR|Argentina","AM|Armenia","AW|Aruba","AU|Australia","AT|Austria","AZ|Azerbaijan","BS|Bahamas","BH|Bahrain","BD|Bangladesh","BB|Barbados","BY|Belarus","BE|Belgium","BZ|Belize","BJ|Benin","BM|Bermuda","BT|Bhutan","BO|Bolivia","BA|Bosnia And Herzegovina","BW|Botswana","BV|Bouvet Island","BR|Brazil","IO|British Indian Ocean Territory","BN|Brunei Darussalam","BG|Bulgaria","BF|Burkina Faso","BI|Burundi","KH|Cambodia","CM|Cameroon","CA|Canada","CV|Cape Verde","KY|Cayman Islands","CF|Central African Republic","TD|Chad","CL|Chile","CN|China","CX|Christmas Island","CC|Cocos (keeling) Islands","CO|Colombia","KM|Comoros","CG|Congo","CD|Congo, The Democratic Republic Of The","CK|Cook Islands","CR|Costa Rica","CI|Cote D'ivoire","HR|Croatia","CU|Cuba","CY|Cyprus","CZ|Czech Republic","DK|Denmark","DJ|Djibouti","DM|Dominica","DO|Dominican Republic","TP|East Timor","EC|Ecuador","EG|Egypt","SV|El Salvador","GQ|Equatorial Guinea","ER|Eritrea","EE|Estonia","ET|Ethiopia","FK|Falkland Islands (malvinas)","FO|Faroe Islands","FJ|Fiji","FI|Finland","FR|France","GF|French Guiana","PF|French Polynesia","TF|French Southern Territories","GA|Gabon","GM|Gambia","GE|Georgia","DE|Germany","GH|Ghana","GI|Gibraltar","GR|Greece","GL|Greenland","GD|Grenada","GP|Guadeloupe","GU|Guam","GT|Guatemala","GN|Guinea","GW|Guinea-bissau","GY|Guyana","HT|Haiti","HM|Heard Island And Mcdonald Islands","VA|Holy See (vatican City State)","HN|Honduras","HK|Hong Kong","HU|Hungary","IS|Iceland","IN|India","ID|Indonesia","IR|Iran, Islamic Republic Of","IQ|Iraq","IE|Ireland","IL|Israel","IT|Italy","JM|Jamaica","JP|Japan","JO|Jordan","KZ|Kazakstan","KE|Kenya","KI|Kiribati","KP|Korea, Democratic People's Republic Of","KR|Korea, Republic Of","KV|Kosovo","KW|Kuwait","KG|Kyrgyzstan","LA|Lao People's Democratic Republic","LV|Latvia","LB|Lebanon","LS|Lesotho","LR|Liberia","LY|Libyan Arab Jamahiriya","LI|Liechtenstein","LT|Lithuania","LU|Luxembourg","MO|Macau","MK|Macedonia, The Former Yugoslav Republic Of","MG|Madagascar","MW|Malawi","MY|Malaysia","MV|Maldives","ML|Mali","MT|Malta","MH|Marshall Islands","MQ|Martinique","MR|Mauritania","MU|Mauritius","YT|Mayotte","MX|Mexico","FM|Micronesia, Federated States Of","MD|Moldova, Republic Of","MC|Monaco","MN|Mongolia","MS|Montserrat","ME|Montenegro","MA|Morocco","MZ|Mozambique","MM|Myanmar","NA|Namibia","NR|Nauru","NP|Nepal","NL|Netherlands","AN|Netherlands Antilles","NC|New Caledonia","NZ|New Zealand","NI|Nicaragua","NE|Niger","NG|Nigeria","NU|Niue","NF|Norfolk Island","MP|Northern Mariana Islands","NO|Norway","OM|Oman","PK|Pakistan","PW|Palau","PS|Palestinian Territory, Occupied","PA|Panama","PG|Papua New Guinea","PY|Paraguay","PE|Peru","PH|Philippines","PN|Pitcairn","PL|Poland","PT|Portugal","PR|Puerto Rico","QA|Qatar","RE|Reunion","RO|Romania","RU|Russian Federation","RW|Rwanda","SH|Saint Helena","KN|Saint Kitts And Nevis","LC|Saint Lucia","PM|Saint Pierre And Miquelon","VC|Saint Vincent And The Grenadines","WS|Samoa","SM|San Marino","ST|Sao Tome And Principe","SA|Saudi Arabia","SN|Senegal","RS|Serbia","SC|Seychelles","SL|Sierra Leone","SG|Singapore","SK|Slovakia","SI|Slovenia","SB|Solomon Islands","SO|Somalia","ZA|South Africa","GS|South Georgia And The South Sandwich Islands","ES|Spain","LK|Sri Lanka","SD|Sudan","SR|Suriname","SJ|Svalbard And Jan Mayen","SZ|Swaziland","SE|Sweden","CH|Switzerland","SY|Syrian Arab Republic","TW|Taiwan, Province Of China","TJ|Tajikistan","TZ|Tanzania, United Republic Of","TH|Thailand","TG|Togo","TK|Tokelau","TO|Tonga","TT|Trinidad And Tobago","TN|Tunisia","TR|Turkey","TM|Turkmenistan","TC|Turks And Caicos Islands","TV|Tuvalu","UG|Uganda","UA|Ukraine","AE|United Arab Emirates","GB|United Kingdom","US|United States","UM|United States Minor Outlying Islands","UY|Uruguay","UZ|Uzbekistan","VU|Vanuatu","VE|Venezuela","VN|Viet Nam","VG|Virgin Islands, British","VI|Virgin Islands, U.s.","WF|Wallis And Futuna","EH|Western Sahara","YE|Yemen","ZM|Zambia","ZW|Zimbabwe
+INSERT INTO countries (country_unique_ID, country_code, country) Values (1, 'AF', Afghanistan'),(2,'AL' 'Albania'),(3, 'DZ', 'Algeria'),(4, 'AS', 'American Samoa'),(5, 'AD', 'Andorra'),(6, 'AO', 'Angola'),(7, 'AI', 'Anguilla'),(8, 'AQ', 'Antarctica'),(9, 'AG', 'Antigua And Barbuda'),(10, 'AR', 'Argentina'),(11, 'AM','Armenia'),(12, 'AW','Aruba'),(13, 'AU', 'Australia')
+,"AT|Austria","AZ|Azerbaijan","BS|Bahamas","BH|Bahrain","BD|Bangladesh","BB|Barbados","BY|Belarus","BE|Belgium","BZ|Belize","BJ|Benin","BM|Bermuda","BT|Bhutan","BO|Bolivia","BA|Bosnia And Herzegovina","BW|Botswana","BV|Bouvet Island","BR|Brazil","IO|British Indian Ocean Territory","BN|Brunei Darussalam","BG|Bulgaria","BF|Burkina Faso","BI|Burundi","KH|Cambodia","CM|Cameroon","CA|Canada","CV|Cape Verde","KY|Cayman Islands","CF|Central African Republic","TD|Chad","CL|Chile","CN|China","CX|Christmas Island","CC|Cocos (keeling) Islands","CO|Colombia","KM|Comoros","CG|Congo","CD|Congo, The Democratic Republic Of The","CK|Cook Islands","CR|Costa Rica","CI|Cote D'ivoire","HR|Croatia","CU|Cuba","CY|Cyprus","CZ|Czech Republic","DK|Denmark","DJ|Djibouti","DM|Dominica","DO|Dominican Republic","TP|East Timor","EC|Ecuador","EG|Egypt","SV|El Salvador","GQ|Equatorial Guinea","ER|Eritrea","EE|Estonia","ET|Ethiopia","FK|Falkland Islands (malvinas)","FO|Faroe Islands","FJ|Fiji","FI|Finland","FR|France","GF|French Guiana","PF|French Polynesia","TF|French Southern Territories","GA|Gabon","GM|Gambia","GE|Georgia","DE|Germany","GH|Ghana","GI|Gibraltar","GR|Greece","GL|Greenland","GD|Grenada","GP|Guadeloupe","GU|Guam","GT|Guatemala","GN|Guinea","GW|Guinea-bissau","GY|Guyana","HT|Haiti","HM|Heard Island And Mcdonald Islands","VA|Holy See (vatican City State)","HN|Honduras","HK|Hong Kong","HU|Hungary","IS|Iceland","IN|India","ID|Indonesia","IR|Iran, Islamic Republic Of","IQ|Iraq","IE|Ireland","IL|Israel","IT|Italy","JM|Jamaica","JP|Japan","JO|Jordan","KZ|Kazakstan","KE|Kenya","KI|Kiribati","KP|Korea, Democratic People's Republic Of","KR|Korea, Republic Of","KV|Kosovo","KW|Kuwait","KG|Kyrgyzstan","LA|Lao People's Democratic Republic","LV|Latvia","LB|Lebanon","LS|Lesotho","LR|Liberia","LY|Libyan Arab Jamahiriya","LI|Liechtenstein","LT|Lithuania","LU|Luxembourg","MO|Macau","MK|Macedonia, The Former Yugoslav Republic Of","MG|Madagascar","MW|Malawi","MY|Malaysia","MV|Maldives","ML|Mali","MT|Malta","MH|Marshall Islands","MQ|Martinique","MR|Mauritania","MU|Mauritius","YT|Mayotte","MX|Mexico","FM|Micronesia, Federated States Of","MD|Moldova, Republic Of","MC|Monaco","MN|Mongolia","MS|Montserrat","ME|Montenegro","MA|Morocco","MZ|Mozambique","MM|Myanmar","NA|Namibia","NR|Nauru","NP|Nepal","NL|Netherlands","AN|Netherlands Antilles","NC|New Caledonia","NZ|New Zealand","NI|Nicaragua","NE|Niger","NG|Nigeria","NU|Niue","NF|Norfolk Island","MP|Northern Mariana Islands","NO|Norway","OM|Oman","PK|Pakistan","PW|Palau","PS|Palestinian Territory, Occupied","PA|Panama","PG|Papua New Guinea","PY|Paraguay","PE|Peru","PH|Philippines","PN|Pitcairn","PL|Poland","PT|Portugal","PR|Puerto Rico","QA|Qatar","RE|Reunion","RO|Romania","RU|Russian Federation","RW|Rwanda","SH|Saint Helena","KN|Saint Kitts And Nevis","LC|Saint Lucia","PM|Saint Pierre And Miquelon","VC|Saint Vincent And The Grenadines","WS|Samoa","SM|San Marino","ST|Sao Tome And Principe","SA|Saudi Arabia","SN|Senegal","RS|Serbia","SC|Seychelles","SL|Sierra Leone","SG|Singapore","SK|Slovakia","SI|Slovenia","SB|Solomon Islands","SO|Somalia","ZA|South Africa","GS|South Georgia And The South Sandwich Islands","ES|Spain","LK|Sri Lanka","SD|Sudan","SR|Suriname","SJ|Svalbard And Jan Mayen","SZ|Swaziland","SE|Sweden","CH|Switzerland","SY|Syrian Arab Republic","TW|Taiwan, Province Of China","TJ|Tajikistan","TZ|Tanzania, United Republic Of","TH|Thailand","TG|Togo","TK|Tokelau","TO|Tonga","TT|Trinidad And Tobago","TN|Tunisia","TR|Turkey","TM|Turkmenistan","TC|Turks And Caicos Islands","TV|Tuvalu","UG|Uganda","UA|Ukraine","AE|United Arab Emirates","GB|United Kingdom","US|United States","UM|United States Minor Outlying Islands","UY|Uruguay","UZ|Uzbekistan","VU|Vanuatu","VE|Venezuela","VN|Viet Nam","VG|Virgin Islands, British","VI|Virgin Islands, U.s.","WF|Wallis And Futuna","EH|Western Sahara","YE|Yemen","ZM|Zambia","ZW|Zimbabwe
 
   
 ```
@@ -80,15 +81,14 @@ CREATE TABLE events (
 Table 4 (fatalities):
 
 ```
-CREATE TABLE events (
+CREATE TABLE fatalities (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
   country_code VARCHAR(10),
-  date DATE
-  CONSTRAINT
-  FK_countrycode_anddate
-  FOREIGN KEY
-  (country_code, date)); 
+  date DATE, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+ 
 ```
 
 Table 5 (other impacts): 
@@ -97,11 +97,9 @@ Table 5 (other impacts):
 CREATE TABLE other_impacts (
   date DATE,
   country_code VARCHAR(10),
-  displaced_or_injured INT
-  CONSTRAINT
-  FK_countrycode_anddate
-  FOREIGN KEY
-  (country_code, date)); 
+  displaced_or_injured INT, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
 ```
 
 Table 6 (recovery):
@@ -112,10 +110,8 @@ CREATE TABLE recovery (
   country_code VARCHAR(10),
   days_to_recover INT,
   method_to_deal_with_disaster VARCHAR(100) 
-  CONSTRAINT
-  FK_countrycode_anddate
-  FOREIGN KEY
-  (country_code, date)); 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
 ```
 
 Tables 7 and 8 (economic impact):
@@ -125,19 +121,15 @@ CREATE TABLE economic_impact_1 (
   total_monetary_impact INT,
   date DATE,
   country_code VARCHAR(10) 
-  CONSTRAINT
-  FK_countrycode_anddate
-  FOREIGN KEY
-  (country_code, date)); 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
  CREATE TABLE economic_impact_2 (
   %_of_global_GDP INT,
   country_code VARCHAR(10),
-  date DATE
-  CONSTRAINT
-  FK_countrycode_anddate
-  FOREIGN KEY
-  (country_code, date)); 
+  date DATE, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
 
 ```
 
@@ -147,11 +139,9 @@ Table 9 (support):
 CREATE TABLE support (
   organisations VARCHAR(150),
   amount VARCHAR(100),
-  country_unique_ID INT 
-  CONSTRAINT
-  FK_country_ID
-  FOREIGN KEY
-  (country_unique_ID)); 
+  country_unique_ID INT, 
+  CONSTRAINT FK_country_ID FOREIGN KEY (country_unique_ID) references countries(country_unique_ID)); 
+  
 ```
 ### Queries for Data Analysis
 
@@ -172,10 +162,10 @@ Learning more about Japan's economic resilience can help other countries build p
 
 ```
 -- Maximum number of fatalities
-SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM events); 
+SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM fatalities); 
 
 --Minimum number of fatalities
-SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM events);  
+SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM fatalities);  
 
 ```
 
@@ -185,7 +175,7 @@ Implications and analysis:
 3. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes 
 
 ```
-SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
+SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
 -- (or no need after group by)
 ``` 
 
