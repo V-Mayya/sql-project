@@ -14,7 +14,7 @@ The creation of this project is intended to:
 
 ### Setting up tables and columns
 
-**COUNTRIES**: country_unique_ID, country_code, countries where disaster struck
+**COUNTRIES**: country_unique_ID, country_code, countries where disaster struck along with their respective regions
 
 **NATURAL DISASTER TYPES**: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
 
@@ -123,12 +123,13 @@ CREATE TABLE economic_impact_1 (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
  CREATE TABLE economic_impact_2 (
-  %_of_global_GDP INT,
-  country_code VARCHAR(10),
-  date DATE, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  %_of_global_GDP DEC(10,2),
+  region VARCHAR(100)); 
+  
+  INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('
 
+
+-- Note: the above data is a rough estimate taken from the S&P Global Ratings graph 
 ```
 
 Table 9 (support):
@@ -214,6 +215,9 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 
 ### Further Questions/Extensions and Limitations 
 
+Extensions:
+- Include all countries by region to link to economic impact table 2
+
 Limitations: 
 - Limitation could be natural disasters accounts for only small number of fatalities/gdp loss compared to other things but still equally impactful 
 - Other types of disasters not included? 
@@ -226,6 +230,7 @@ Limitations:
 - https://www.weforum.org/agenda/2022/04/climate-change-global-gdp-risk/#:~:text=Over%20the%20past%2010%20years,to%20insurance%20firm%20Swiss%20Re
 - https://www.forbes.com/sites/rogerpielke/2019/10/31/surprising-good-news-on-the-economic-costs-of-disasters/?sh=867d75b1952e 
 - https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/
+- https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blame/master/all/all.csv
 
 ### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
