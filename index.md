@@ -158,7 +158,7 @@ Learning more about Japan's economic resilience can help other countries build p
 
 ```
 SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP desc; 
-
+```
 | region | %_of_global_GDP | 
 | -------------------- | ---| 
 | South Asia | 15 | 
@@ -169,10 +169,15 @@ SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP d
 | World | 4.0 |
 | Latin America and Caribbean | 3.0 |
 | Europe | 0.7 |
-```
+
 The data demonstrates how the impact of climate change that has resulted in natural disasters has had varying effects based on different regions. According to S&P Global Ratings, South Asia is around 10 times more exposed to the economic impact of climate change compared to Europe. 'Climate change could see 4% of global annual economic output lost by 2050 and hit many poorer parts of the world disproportionately hard, a new study of 135 countries has estimated.' By ordering the data, it can observed that South Asia has the highest disaster losses as a % of GDP with Central Asia just below. 
 
-All of these facts highlight the importance of dealing with climate change and economic support that must be offered to Asian economies. 
+All of these facts highlight the importance of dealing with climate change and economic support that must be offered to Asian economies. It is difficult to find a solution that can be used for all regions. However, certain measures such as bringing about awareness of disaster risk management, analysing certain impacts (job losses, tax revenue loss and others), developing strategic plans considering various stakeholders and others can help mitigate the impact. 
+
+There has been a lot of research done in this area:
+- https://www.journals.uchicago.edu/doi/full/10.1093/reep/rez004 
+- https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
+- https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
 2. Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows
 
