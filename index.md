@@ -45,11 +45,8 @@ Some of the tables will have primary and foreign constraints. The first table is
 CREATE TABLE countries (
   country_unique_ID INT,
   country_code VARCHAR(10) UNIQUE,
-  country VARCHAR(35) 
-  CONSTRAINT
-  PK_country_unique_ID
-  PRIMARY KEY
-  (country_unique_ID)); 
+  country VARCHAR(35),  
+  CONSTRAINT PK_country_unique_ID PRIMARY KEY (country_unique_ID)); 
   
 INSERT INTO countries (country_unique_ID, country_code, country) Values (1, 'AF', Afghanistan'),(2,'AL' 'Albania'),('3', 'DZ', 'Algeria'),('4', 'AS', 'American Samoa'),('5', 'AD', 'Andorra'),('6', 'AO', 'Angola'),"AI|Anguilla","AQ|Antarctica","AG|Antigua And Barbuda","AR|Argentina","AM|Armenia","AW|Aruba","AU|Australia","AT|Austria","AZ|Azerbaijan","BS|Bahamas","BH|Bahrain","BD|Bangladesh","BB|Barbados","BY|Belarus","BE|Belgium","BZ|Belize","BJ|Benin","BM|Bermuda","BT|Bhutan","BO|Bolivia","BA|Bosnia And Herzegovina","BW|Botswana","BV|Bouvet Island","BR|Brazil","IO|British Indian Ocean Territory","BN|Brunei Darussalam","BG|Bulgaria","BF|Burkina Faso","BI|Burundi","KH|Cambodia","CM|Cameroon","CA|Canada","CV|Cape Verde","KY|Cayman Islands","CF|Central African Republic","TD|Chad","CL|Chile","CN|China","CX|Christmas Island","CC|Cocos (keeling) Islands","CO|Colombia","KM|Comoros","CG|Congo","CD|Congo, The Democratic Republic Of The","CK|Cook Islands","CR|Costa Rica","CI|Cote D'ivoire","HR|Croatia","CU|Cuba","CY|Cyprus","CZ|Czech Republic","DK|Denmark","DJ|Djibouti","DM|Dominica","DO|Dominican Republic","TP|East Timor","EC|Ecuador","EG|Egypt","SV|El Salvador","GQ|Equatorial Guinea","ER|Eritrea","EE|Estonia","ET|Ethiopia","FK|Falkland Islands (malvinas)","FO|Faroe Islands","FJ|Fiji","FI|Finland","FR|France","GF|French Guiana","PF|French Polynesia","TF|French Southern Territories","GA|Gabon","GM|Gambia","GE|Georgia","DE|Germany","GH|Ghana","GI|Gibraltar","GR|Greece","GL|Greenland","GD|Grenada","GP|Guadeloupe","GU|Guam","GT|Guatemala","GN|Guinea","GW|Guinea-bissau","GY|Guyana","HT|Haiti","HM|Heard Island And Mcdonald Islands","VA|Holy See (vatican City State)","HN|Honduras","HK|Hong Kong","HU|Hungary","IS|Iceland","IN|India","ID|Indonesia","IR|Iran, Islamic Republic Of","IQ|Iraq","IE|Ireland","IL|Israel","IT|Italy","JM|Jamaica","JP|Japan","JO|Jordan","KZ|Kazakstan","KE|Kenya","KI|Kiribati","KP|Korea, Democratic People's Republic Of","KR|Korea, Republic Of","KV|Kosovo","KW|Kuwait","KG|Kyrgyzstan","LA|Lao People's Democratic Republic","LV|Latvia","LB|Lebanon","LS|Lesotho","LR|Liberia","LY|Libyan Arab Jamahiriya","LI|Liechtenstein","LT|Lithuania","LU|Luxembourg","MO|Macau","MK|Macedonia, The Former Yugoslav Republic Of","MG|Madagascar","MW|Malawi","MY|Malaysia","MV|Maldives","ML|Mali","MT|Malta","MH|Marshall Islands","MQ|Martinique","MR|Mauritania","MU|Mauritius","YT|Mayotte","MX|Mexico","FM|Micronesia, Federated States Of","MD|Moldova, Republic Of","MC|Monaco","MN|Mongolia","MS|Montserrat","ME|Montenegro","MA|Morocco","MZ|Mozambique","MM|Myanmar","NA|Namibia","NR|Nauru","NP|Nepal","NL|Netherlands","AN|Netherlands Antilles","NC|New Caledonia","NZ|New Zealand","NI|Nicaragua","NE|Niger","NG|Nigeria","NU|Niue","NF|Norfolk Island","MP|Northern Mariana Islands","NO|Norway","OM|Oman","PK|Pakistan","PW|Palau","PS|Palestinian Territory, Occupied","PA|Panama","PG|Papua New Guinea","PY|Paraguay","PE|Peru","PH|Philippines","PN|Pitcairn","PL|Poland","PT|Portugal","PR|Puerto Rico","QA|Qatar","RE|Reunion","RO|Romania","RU|Russian Federation","RW|Rwanda","SH|Saint Helena","KN|Saint Kitts And Nevis","LC|Saint Lucia","PM|Saint Pierre And Miquelon","VC|Saint Vincent And The Grenadines","WS|Samoa","SM|San Marino","ST|Sao Tome And Principe","SA|Saudi Arabia","SN|Senegal","RS|Serbia","SC|Seychelles","SL|Sierra Leone","SG|Singapore","SK|Slovakia","SI|Slovenia","SB|Solomon Islands","SO|Somalia","ZA|South Africa","GS|South Georgia And The South Sandwich Islands","ES|Spain","LK|Sri Lanka","SD|Sudan","SR|Suriname","SJ|Svalbard And Jan Mayen","SZ|Swaziland","SE|Sweden","CH|Switzerland","SY|Syrian Arab Republic","TW|Taiwan, Province Of China","TJ|Tajikistan","TZ|Tanzania, United Republic Of","TH|Thailand","TG|Togo","TK|Tokelau","TO|Tonga","TT|Trinidad And Tobago","TN|Tunisia","TR|Turkey","TM|Turkmenistan","TC|Turks And Caicos Islands","TV|Tuvalu","UG|Uganda","UA|Ukraine","AE|United Arab Emirates","GB|United Kingdom","US|United States","UM|United States Minor Outlying Islands","UY|Uruguay","UZ|Uzbekistan","VU|Vanuatu","VE|Venezuela","VN|Viet Nam","VG|Virgin Islands, British","VI|Virgin Islands, U.s.","WF|Wallis And Futuna","EH|Western Sahara","YE|Yemen","ZM|Zambia","ZW|Zimbabwe
 
@@ -62,10 +59,7 @@ The next table lists the types of natural disasters along with a unique ID as we
 CREATE TABLE types (
   natural_disaster_ID INT,
   type VARCHAR(40), 
-  CONSTRAINT
-  PK_natural_disaster_ID
-  PRIMARY KEY
-  (natural_disaster_ID)); 
+  CONSTRAINT PK_natural_disaster_ID PRIMARY KEY (natural_disaster_ID)); 
   
 INSERT INTO types (natural_disaster_ID, type) Values (1, 'Drought'), (2, 'Earthquake'), (3, 'Extreme Temperature'), (4, 'Flood'), (5, 'Landslide'), (6, 'Mass Movement'), (7, 'Storm/Cyclones'), (8, 'Volcanic activity'), (9, 'Wildfire'), (10, 'Tsunami'); 
 
@@ -78,11 +72,9 @@ CREATE TABLE events (
   date DATE,
   natural_disaster_ID INT,
   country_code VARCHAR(10),
-  magnitude DEC(10,2)
-  CONSTRAINT
-  FK_naturaldisasterandcountry_code
-  FOREIGN KEY
-  (natural_disaster_ID, country_code)); 
+  magnitude DEC(10,2), 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
 ```
 
 Table 4 (fatalities):
@@ -204,6 +196,24 @@ This can then be compared with total number of earthquakes of magnitude greater 
 ``` 
 SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >= 6 AND country_code = .. ; 
 
+``` 
+
+A percentage can be established that will demonstrate the % that more than 3 different species of wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In Japan, this amounts to around: 
+
+Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
+
+4. Number of massively destructive earthquakes (magnitude >= 6.0) by country
+
+``` 
+SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM trial3 WHERE magnitude >=6 GROUP BY country_code;
+
+``` 
+Output: 
+
+
+Implications and Analysis: From the output, it can be observed that ... country had the highest number of destructive earthquakes during the period of 2000-2022. ....
+
+``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
 
 SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6;
@@ -213,10 +223,6 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 -- % of earthquakes that had a significant impact (magnitude >=6) is: .. % during the period of 2000-2022. 
 
 ``` 
-
-A percentage can be established that will demonstrate the % that more than 3 different species of wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In Japan, this amounts to around: 
-
-Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
 ### Further Questions/Extensions and Limitations 
 
