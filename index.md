@@ -21,13 +21,13 @@ The creation of this project is intended to:
 **EVENTS**: dates of natural disasters, country_unique_ID,  natural_disaster_unique_ID, magnitude of each event
 
 Note: Magnitudes have been determined on an integer scale by -
-- Earthquake: Earthquake Magnitude Scale (https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/) 
-- Hurricane: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
-- Tsunami: Richter Scale/Tsunami or Seismic Magnitude Scale (https://www.sms-tsunami-warning.com/pages/richter-scale)
-- Volcanic Activity: Volcanic Exposivity Index (VEI) (https://www.usgs.gov/media/images/volcanic-explosivity-index-vei-a-numeric-scale-measures-t)
-- Drought: Palmer Drought Severity Index (https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi) 
-- Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on (https://www.nwcg.gov/term/glossary/size-class-of-fire)
-- Flood: DFO Flood magnitude scale (https://floodobservatory.colorado.edu/SatelliteGaugingSites/DFOFloodIndexExplanation.pdf) or Flood magnitude = log (Duration × Severity × Area Affected)
+- **Earthquake**: Earthquake Magnitude Scale 
+- **Hurricane**: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
+- **Tsunami**: Richter Scale/Tsunami or Seismic Magnitude Scale 
+- **Volcanic Activity**: Volcanic Exposivity Index (**VEI**) 
+- **Drought**: Palmer Drought Severity Index 
+- **Wildfire**: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
+- **Flood**: DFO Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
@@ -87,7 +87,7 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4) 
   
 ```
 
@@ -138,7 +138,7 @@ CREATE TABLE economic_impact_1 (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
  INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40, '2004-10-23', 'JP'), (173, '2005-08-23', 'US'), (107,'2008-05-12', 
- 'CN'), (253, '2011-03-11', 'JP'), (48, '2011-07-25', 'TH'), (59, '2012-10-22', 'US'), (105, '2017-08-17', 'US'), (75, 
+ 'CN'), (253, '2011-03-11', 'JP'), (48, '2011-07-25', 'TH'), (59, '2012-10-22', 'US'), (105, '2017-08-17', 'US'), (75, '2017-09-16', 'US'), (63, '2017-08-30', 'US'), (65, '2021-08-26', 'US')
  
  -- Note: Data from the international disasters database EM-DAT
   
@@ -163,7 +163,7 @@ CREATE TABLE support (
 ```
 ### Queries for Data Analysis
 
-**1. Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
+- **Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows** 
 
 ```
 SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
@@ -201,7 +201,7 @@ There has been a lot of research done in this area:
 - https://www.suncorpgroup.com.au/uploads/190905-Economic-benefits-of-Suncorp-Insurance-REPORT-PDF-version.pdf
 - https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/9780367258580
 
-**2. Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
+- **Country with the maximum and minimum number of fatalities during 2000-2022 demonstrated through 2 subqueries shown as follows**
 
 ```
 -- Maximum number of fatalities
@@ -215,7 +215,7 @@ SELECT country AS 'country with min. fatalities' FROM countries WHERE country_un
 
 
 
-**3. Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
+- **Number of species of wildlife impacted in countries that have had moderate to severe earthquakes** 
 
 ```
 SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
@@ -235,7 +235,7 @@ A percentage can be established that will demonstrate the % that more than 3 dif
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
-**4. Number of massively destructive earthquakes (magnitude >= 6.0) by country**
+- **Number of massively destructive earthquakes (magnitude >= 6.0) by country**
 
 ``` 
 SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
@@ -257,7 +257,7 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
 
 ``` 
 
-***5. Number of hurricanes/storms/cyclones by country*
+- **Number of hurricanes/storms/cyclones by country*
 
 As an example, we can compare the number of hurricanes during the period of 2000-2022 to find which country has had the highest number of hurricanes. 
 
@@ -270,8 +270,9 @@ SELECT COUNT(country_code), country_code AS 'Number of Hurricanes' FROM events W
 ### Further Questions/Extensions and Limitations 
 
 Extensions:
-- Would be interesting to conduct data analysis related to climate change (such as GHG or carbon emissions, sea level rises) months prior to the disaster to find any causal effects of climate change on increasing the risk of disaster 
+- Would be interesting to conduct data analysis related to climate change (such as GHG or carbon emissions, sea level rises) months prior to the disaster to find any causal effects of climate change on increasing the risk of disaster in a country
 - Include all countries by region to link to economic impact table 2
+- Include names of disasters to better assist analysis of data and generate more subqueries using LIKE and others
 
 Limitations: 
 - Limitation could be natural disasters accounts for only small number of fatalities/gdp loss compared to other things but still equally impactful 
@@ -293,6 +294,14 @@ Limitations:
 - https://rmets.onlinelibrary.wiley.com/doi/10.1002/wea.2133
 - https://www.nationalgeographic.com/environment/article/hurricane-sandy
 - https://www.weather.gov/hgx/hurricaneharvey
+- https://edition.cnn.com/specials/hurricane-irma
+- https://www.mtu.edu/geo/community/seismology/learn/earthquake-measure/magnitude/
+- https://www.sms-tsunami-warning.com/pages/richter-scale
+- https://www.usgs.gov/media/images/volcanic-explosivity-index-vei-a-numeric-scale-measures-t
+- https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi
+- https://www.nwcg.gov/term/glossary/size-class-of-fire
+- https://floodobservatory.colorado.edu/SatelliteGaugingSites/DFOFloodIndexExplanation.pdf
+- https://www.worldvision.org/disaster-relief-news-stories/2021-hurricane-ida-facts
 
 ### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
