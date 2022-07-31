@@ -311,7 +311,7 @@ CREATE VIEW magnitude_and_fatalities_view AS
 SELECT c.date, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_2 e ON d.date = e.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 f ON e.date = f.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 g ON f.date = g.date WHERE natural_disaster_ID = 2; 
 
 -- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
-SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
+SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
 
 ```
 - 
