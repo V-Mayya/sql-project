@@ -87,19 +87,52 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4) 
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ( 
   
 ```
 
-Table 4 (fatalities):
+Table 4 (fatalities - consists of 4 tables, each containing 5 years data):
 
 ```
-CREATE TABLE fatalities (
+CREATE TABLE fatalities_table_1 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
   country_code VARCHAR(10),
+  natural_disaster_ID INT,
   date DATE, 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  
+  
+CREATE TABLE fatalities_table_2 (
+  number_of_fatalities INT,
+  species_impacted VARCHAR(55),
+  country_code VARCHAR(10),
+  natural_disaster_ID INT,
+  date DATE, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  
+CREATE TABLE fatalities_table_3 (
+  number_of_fatalities INT,
+  species_impacted VARCHAR(55),
+  country_code VARCHAR(10),
+  natural_disaster_ID INT,
+  date DATE, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
+  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  
+CREATE TABLE fatalities_table_4 (
+  number_of_fatalities INT,
+  species_impacted VARCHAR(55),
+  country_code VARCHAR(10),
+  natural_disaster_ID INT,
+  date DATE, 
+  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
  
 ```
@@ -207,15 +240,12 @@ https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/97803672
 
 ```
 -- Maximum number of fatalities
-SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM fatalities); 
+SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON c.country_code = d.country_code INNER JOIN fatalities_table_3 e ON d.country_code = e.country_code INNER JOIN fatalities_table_4 f ON e.country_code = f.country_code); 
 
 --Minimum number of fatalities
-SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM fatalities);  
+SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON c.country_code = d.country_code INNER JOIN fatalities_table_3 e ON d.country_code = e.country_code INNER JOIN fatalities_table_4 f ON e.country_code = f.country_code);  
 
 ```
-
-
-
 
 - Number of species of wildlife impacted in countries that have had moderate to severe earthquakes
 
@@ -268,6 +298,23 @@ SELECT COUNT(country_code), country_code AS 'Number of Hurricanes' FROM events W
 
 ``` 
 ... like U.S.A had the highest number of hurricanes during the period of 2000-2022. 
+
+- Establishing other trends
+
+Other trends can be identified by changing the GROUP BY condition accordingly or by using JOIN statements. For example, a trend can be established with magnitudes of a certain disaster such as earthquakes, number of fatalities and dates of disasters. By first getting data using the SELECT statement, a graph with time as the independent variable and other variables such as number of fatalities and magnitudes as the dependent variables can be used to derive relationships.
+
+In this instance, a causal relationship between magnitudes of earthquake and number of fatalities over time can be established (based on a priori hypothesis and intuition). However, in most instances, since correlation is not causation, more information is needed to establish trends. 
+
+```
+-- Relationship between magnitude of earthquake and number of fatalities over time (2000-2022)
+CREATE VIEW magnitude_and_fatalities_view AS
+SELECT c.date, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_2 e ON d.date = e.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 f ON e.date = f.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 g ON f.date = g.date WHERE natural_disaster_ID = 2; 
+
+-- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
+SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
+
+```
+- 
 
 ### Further Questions/Extensions and Limitations 
 
