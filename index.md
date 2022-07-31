@@ -28,6 +28,7 @@ Note: Magnitudes have been determined on an integer scale by -
 - Drought: Palmer Drought Severity Index 
 - Wildfire: Measured according to class A, B and so on - converted to integers for purpose of data analysis; so class 1, 2 and so on 
 - Flood: **DFO** Flood magnitude scale or Flood magnitude = log (Duration × Severity × Area Affected)
+- Extreme Temperature/Heat Wave: Heat Wave Magnitude Index or others (1: Mild, 5: Severe) 
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
@@ -314,18 +315,48 @@ SELECT c.date, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fata
 SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
 
 ```
-- Generating a stored function to output country with < than certain number of recovery days after disaster and method used to deal with disaster
-
-create function where if number of days for recovery is less than a certain number (for a certain year like 2022), then print the country (from the country unique ID in the recovery table) along with the method country used to deal with aftermath of disaster (and consider that as most effective) → so output: {country} dealt with the 2022 disaster the best by {method to deal with aftermath of disaster}.  
+- Generating a stored function to produce magnitude scales for all disasters from 2000-2022 
 
 ```
-DELIMITER//
-CREATE FUNCTION 
-DELIMITER; 
+DELIMITER //
+CREATE FUNCTION magnitude_scale(
+	natural_disaster_ID INT
+) 
+RETURNS VARCHAR(150)
+DETERMINISTIC
+BEGIN
+    DECLARE mag_scale VARCHAR(150);
+	  IF natural_disaster_ID = 1 THEN SET mag_scale = 'Palmer Drought Severity Index';
+    ELSEIF natural_disaster_ID = 2 THEN SET mag_scale = 'Earthquake Magnitude Scale';
+    ELSEIF natural_disaster_ID = 3 THEN SET mag_scale = 'Heat Wave Magnitude Index or Others';
+    ELSEIF natural_disaster_ID = 4 THEN SET mag_scale = 'Flood magnitude scale or log (Duration × Severity × Area Affected)';
+    ELSEIF natural_disaster_ID = 5 THEN SET mag_scale = 'Others';
+    ELSEIF natural_disaster_ID = 6 THEN SET mag_scale = 'Others';
+    ELSEIF natural_disaster_ID = 7 THEN SET mag_scale = 'Saffir-Simpson Hurricane Wind Scale';
+    ELSEIF natural_disaster_ID = 8 THEN SET mag_scale = 'Volcanic Exposivity Index';
+    ELSEIF natural_disaster_ID = 9 THEN SET mag_scale = 'Integer Classes (for purpose of data analysis)';
+    ELSEIF natural_disaster_ID = 10 THEN SET mag_scale = 'Richter Scale/Tsunami or Seismic Magnitude Scale';
+    END IF; 
+    Return mag_scale;
+END//
 
-SELECT 
+SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID) AS 'Magnitude Scale' FROM events; 
+    
 ```
+The resulting output from the events table is:
 
+| date | natural_disaster_ID | magnitude | Magnitude Scale |
+
+| -------- | ---- | ---- | -------------------------------- |    
+
+|  |  | 
+|  |  |
+|  |  |
+| | | 
+| |  |
+|  | |
+| |  |
+| |  |
 
 ### Further Questions/Extensions and Limitations 
 
