@@ -314,7 +314,13 @@ SELECT c.date, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fata
 SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
 
 ```
-- 
+- Generating a stored function to output country with < than certain number of recovery days after disaster and method used to deal with disaster
+
+create function where if number of days for recovery is less than a certain number (for a certain year like 2022), then print the country (from the country unique ID in the recovery table) along with the method country used to deal with aftermath of disaster (and consider that as most effective) → so output: {country} dealt with the 2022 disaster the best by {method to deal with aftermath of disaster}.  
+
+```
+```
+
 
 ### Further Questions/Extensions and Limitations 
 
