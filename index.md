@@ -195,6 +195,19 @@ CREATE TABLE support (
   CONSTRAINT FK_country_ID FOREIGN KEY (country_unique_ID) references countries(country_unique_ID)); 
   
 ```
+
+Creating a trigger to convert all organisations first letters to capital:
+
+```
+DELIMITER //
+CREATE TRIGGER organisations_trig
+BEFORE INSERT on support
+FOR EACH ROW
+BEGIN
+SET NEW.organisations = CONCAT(UPPER(SUBSTRING(NEW.organisations,1,1)),LOWER(SUBSTRING(NEW.organisations,2))); 
+END//
+```
+
 ### Queries for Data Analysis
 
 - Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
