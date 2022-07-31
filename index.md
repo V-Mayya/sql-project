@@ -214,7 +214,6 @@ Learning more about Japan's economic resilience can help other countries build p
 SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP desc; 
 ```
 | region | %_of_global_GDP | 
-
 | South Asia | 15 | 
 | Central Asia | 6.6 |
 | Sub-Saharan Africa | 6.1 |
