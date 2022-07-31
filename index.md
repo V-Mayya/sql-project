@@ -319,6 +319,11 @@ SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total nu
 create function where if number of days for recovery is less than a certain number (for a certain year like 2022), then print the country (from the country unique ID in the recovery table) along with the method country used to deal with aftermath of disaster (and consider that as most effective) → so output: {country} dealt with the 2022 disaster the best by {method to deal with aftermath of disaster}.  
 
 ```
+DELIMITER//
+CREATE FUNCTION 
+DELIMITER; 
+
+SELECT 
 ```
 
 
