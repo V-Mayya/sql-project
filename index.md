@@ -215,8 +215,6 @@ SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP d
 ```
 | region | %_of_global_GDP | 
 
-| -------------------- | ---| 
-
 | South Asia | 15 | 
 | Central Asia | 6.6 |
 | Sub-Saharan Africa | 6.1 |
@@ -307,9 +305,11 @@ Other trends can be identified by changing the GROUP BY condition accordingly or
 In this instance, a causal relationship between magnitudes of earthquake and number of fatalities over time can be established (based on a priori hypothesis and intuition). However, in most instances, since correlation is not causation, more information is needed to establish trends. 
 
 ```
--- Relationship between magnitude of earthquake and number of fatalities over time (2000-2022)
+-- Relationship between magnitudes of earthquakes and number of fatalities over time (2000-2022)
 CREATE VIEW magnitude_and_fatalities_view AS
-SELECT c.date, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_2 e ON d.date = e.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 f ON e.date = f.date WHERE natural_disaster_ID = 2 INNER JOIN fatalities_table_3 g ON f.date = g.date WHERE natural_disaster_ID = 2; 
+SELECT c.date, c.natural_disaster_ID, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date INNER JOIN fatalities_table_2 e ON d.date = e.date INNER JOIN fatalities_table_3 f ON e.date = f.date INNER JOIN fatalities_table_3 g ON f.date = g.date; 
+
+SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2; 
 
 -- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
 SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
@@ -345,9 +345,7 @@ SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID
 ```
 The resulting output from the events table is:
 
-| date | natural_disaster_ID | magnitude | Magnitude Scale |
-
-| -------- | ---- | ---- | -------------------------------- |    
+| date | natural_disaster_ID | magnitude | Magnitude Scale | 
 
 |  |  | 
 |  |  |
