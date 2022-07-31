@@ -196,7 +196,7 @@ CREATE TABLE support (
   
 ```
 
-Creating a trigger to convert all organisations first letters to capital:
+Creating a trigger to capitalise organisations:
 
 ```
 DELIMITER //
