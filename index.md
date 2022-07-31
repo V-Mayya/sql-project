@@ -307,12 +307,14 @@ In this instance, a causal relationship between magnitudes of earthquake and num
 ```
 -- Relationship between magnitudes of earthquakes and number of fatalities over time (2000-2022)
 CREATE VIEW magnitude_and_fatalities_view AS
-SELECT c.date, c.natural_disaster_ID, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date INNER JOIN fatalities_table_2 e ON d.date = e.date INNER JOIN fatalities_table_3 f ON e.date = f.date INNER JOIN fatalities_table_3 g ON f.date = g.date; 
+SELECT c.date, c.natural_disaster_ID, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date INNER JOIN fatalities_table_2 e ON c.date = e.date INNER JOIN fatalities_table_3 f ON c.date = f.date INNER JOIN fatalities_table_4 g ON c.date = g.date; 
 
+-- Full view and condition to find relationship between magnitudes of earthquakes and number of fatalities over time
+SELECT * FROM magnitude_and_fatalities_view; 
 SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2; 
 
 -- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
-SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; ; 
+SELECT c.natural_disaster_ID, c.country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; 
 
 ```
 - Generating a stored function to produce magnitude scales for all disasters from 2000-2022 
