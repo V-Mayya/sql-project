@@ -19,7 +19,7 @@ The creation of this project is intended to:
 **NATURAL DISASTER TYPES**: natural_disaster_unique_ID, natural disaster classification (earthquake, tsunami, wildfires, cyclones, etc.) 
 
 **EVENTS**: dates of natural disasters, country_unique_ID,  natural_disaster_unique_ID, magnitude of each event
-
+ 
 Note: Magnitudes have been determined on an integer scale by -
 - Earthquake: Earthquake Magnitude Scale 
 - Hurricane: Saffir-Simpson Hurricane Wind Scale (from categories 1 to 5)
