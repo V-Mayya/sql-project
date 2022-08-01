@@ -32,7 +32,7 @@ Note: Magnitudes have been determined on an integer scale by -
 
 Data points with value NULL represent either N/A if magnitude is not measured in terms of an integer scale or insufficient data available. 
 
-**FATALITIES**: number of fatalities, species impacted, dates of disaster, country_unique_ID 
+**FATALITIES**: number of fatalities, species impacted (number of animals affected), dates of disaster, country_unique_ID 
 
 **OTHER IMPACTS**: number of displaced individuals/injuries, dates of disaster, country_unique_ID 
 
@@ -92,9 +92,10 @@ INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values (
   
 ```
 
-Table 4 (fatalities - consists of 4 tables, each containing 5 years data):
+Table 4 (fatalities - consists of 4 tables, each containing around 5 years data):
 
 ```
+-- 2000-2005
 CREATE TABLE fatalities_table_1 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -105,7 +106,9 @@ CREATE TABLE fatalities_table_1 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
+INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68),  
   
+-- 2005-2010
 CREATE TABLE fatalities_table_2 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -116,6 +119,9 @@ CREATE TABLE fatalities_table_2 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
+INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values 
+  
+-- 2010-2015
 CREATE TABLE fatalities_table_3 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -125,7 +131,10 @@ CREATE TABLE fatalities_table_3 (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
-  
+
+INSERT INTO fatalities_table_3 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values 
+
+--2015-2022
 CREATE TABLE fatalities_table_4 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -135,6 +144,8 @@ CREATE TABLE fatalities_table_4 (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  
+INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values 
  
 ```
 
@@ -147,6 +158,8 @@ CREATE TABLE other_impacts (
   displaced_or_injured INT, 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  
+INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), (
 ```
 
 Table 6 (recovery):
@@ -159,6 +172,8 @@ CREATE TABLE recovery (
   method_to_deal_with_disaster VARCHAR(100) 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
+  
+INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', ), (
 ```
 
 Tables 7 and 8 (economic impact):
@@ -251,7 +266,10 @@ https://www.routledge.com/Disasters-and-Economic-Recovery/Downey/p/book/97803672
 
 ```
 -- Maximum number of fatalities
-SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON c.country_code = d.country_code INNER JOIN fatalities_table_3 e ON d.country_code = e.country_code INNER JOIN fatalities_table_4 f ON e.country_code = f.country_code); 
+SELECT country AS 'country with max. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MAX(number_of_fatalities) FROM ; 
+
+SELECT MAX(number_of_fatalities), FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table; 
+
 
 --Minimum number of fatalities
 SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON c.country_code = d.country_code INNER JOIN fatalities_table_3 e ON d.country_code = e.country_code INNER JOIN fatalities_table_4 f ON e.country_code = f.country_code);  
@@ -261,11 +279,11 @@ SELECT country AS 'country with min. fatalities' FROM countries WHERE country_un
 - Number of species of wildlife impacted in countries that have had moderate to severe earthquakes
 
 ```
-SELECT country, COUNT(species_impacted) AS 'No. of species impacted' FROM events WHERE country_unique_ID IN (SELECT country_unique_ID FROM events WHERE magnitude >= 6) GROUP BY country HAVING COUNT(species_impacted) > 3; 
+SELECT country_code, SUM(species_impacted) AS 'No. of animals impacted' FROM  WHERE country_code IN (SELECT country_code FROM events WHERE magnitude >= 6) GROUP BY country_code HAVING SUM(species_impacted) > 100; 
 -- (or no need after group by)
 ``` 
 
-According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of species impacted (in terms of types such as birds, fish - 2) for all situations where number of species impacted were greater than 3. 
+According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of animals impacted for all situations where number of species impacted were greater than 100. 
 
 This can then be compared with total number of earthquakes of magnitude greater than 6 for each country (Japan in this example) using the following query.
 
