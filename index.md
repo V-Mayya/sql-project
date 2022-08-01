@@ -286,19 +286,25 @@ SELECT * FROM min_fatalities_by_country LIMIT 1;
 - Number of species of wildlife impacted in countries that have had moderate to severe earthquakes
 
 ```
-SELECT SUM(species_impacted) AS 'No. of animals impacted', country_code FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities WHERE country_code IN (SELECT country_code FROM events WHERE magnitude >= 6) GROUP BY country_code HAVING SUM(species_impacted) > 100; 
+-- Total number of animals impacted by moderate to severe earthquakes by country (where number of animals affected is greater than 100) 
+CREATE VIEW species_impacted AS 
+SELECT SUM(species_impacted) AS 'No. of animals impacted', country_code FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities WHERE country_code IN (SELECT country_code FROM events WHERE magnitude >= 6 AND natural_disaster_id = 2) GROUP BY country_code HAVING SUM(species_impacted) > 100; 
+
+-- Assessing wildlife impact of natural disasters: Total number of times greater than 100 animals were impacted by moderate to severe earthquakes 
+SELECT COUNT(country_code) FROM species_impacted;
+
 ``` 
 
 According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of animals impacted for all moderate to severe earthquakes where number of species impacted were greater than 100. 
 
-This can then be compared with total number of earthquakes of magnitude greater than 6 for each country (Japan in this example) using the following query.
+This can then be compared with total number of earthquakes of magnitude greater than 6 (which can also be customised to each country if needed) using the following query.
 
 ``` 
-SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >= 6 AND country_code = .. ; 
+SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >= 6 AND natural_disaster_id = 2; 
 
 ``` 
 
-A percentage can be established that will demonstrate the % that more than 3 different species of wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In Japan, this amounts to around: 
+A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In this instance, it amounts to:  
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
