@@ -270,9 +270,22 @@ SELECT country AS 'country with max. fatalities' FROM countries WHERE country_un
 
 SELECT MAX(number_of_fatalities), FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table; 
 
+-- 1. Create View to use for later 
+CREATE VIEW max_fatalities_by_country AS 
+(SELECT MAX(number_of_fatalities) AS 'max_number_of_fatalities_by_country', country_code FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table GROUP BY country_code ORDER BY MAX(number_of_fatalities) desc); 
+
+-- 2. Select country with maximum number of fatalities during 2000-2022
+SELECT * FROM max_fatalities_by_country LIMIT 1; 
 
 --Minimum number of fatalities
 SELECT country AS 'country with min. fatalities' FROM countries WHERE country_unique_ID IN (SELECT MIN(number_of_fatalities) FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON c.country_code = d.country_code INNER JOIN fatalities_table_3 e ON d.country_code = e.country_code INNER JOIN fatalities_table_4 f ON e.country_code = f.country_code);  
+
+-- 1. Create View to use for later 
+CREATE VIEW min_fatalities_by_country AS 
+(SELECT MIN(number_of_fatalities) AS 'min_number_of_fatalities_by_country', country_code FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table GROUP BY country_code ORDER BY MIN(number_of_fatalities) asc); 
+
+-- 2. Select country with maximum number of fatalities during 2000-2022
+SELECT * FROM min_fatalities_by_country LIMIT 1;
 
 ```
 
