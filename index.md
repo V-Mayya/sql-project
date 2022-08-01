@@ -88,7 +88,7 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ( 
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6),  
   
 ```
 
@@ -119,7 +119,7 @@ CREATE TABLE fatalities_table_2 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values 
+INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11)
   
 -- 2010-2015
 CREATE TABLE fatalities_table_3 (
@@ -159,7 +159,8 @@ CREATE TABLE other_impacts (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), (
+INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), 
+  
 ```
 
 Table 6 (recovery):
@@ -169,11 +170,15 @@ CREATE TABLE recovery (
   date DATE,
   country_code VARCHAR(10),
   days_to_recover INT,
-  method_to_deal_with_disaster VARCHAR(100) 
+  method_to_deal_with_disaster VARCHAR(5000) 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
-INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', ), (
+INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
+geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), 
+
+-- include the word fund if donation or gov. grant above: del this later 
+
 ```
 
 Tables 7 and 8 (economic impact):
@@ -222,6 +227,46 @@ BEGIN
 SET NEW.organisations = CONCAT(UPPER(SUBSTRING(NEW.organisations,1,1)),LOWER(SUBSTRING(NEW.organisations,2))); 
 END//
 ```
+Generating a stored function to produce magnitude scales for all disasters from 2000-2022: 
+
+```
+DELIMITER //
+CREATE FUNCTION magnitude_scale(
+	natural_disaster_ID INT
+) 
+RETURNS VARCHAR(150)
+DETERMINISTIC
+BEGIN
+    DECLARE mag_scale VARCHAR(150);
+	  IF natural_disaster_ID = 1 THEN SET mag_scale = 'Palmer Drought Severity Index';
+    ELSEIF natural_disaster_ID = 2 THEN SET mag_scale = 'Earthquake Magnitude Scale';
+    ELSEIF natural_disaster_ID = 3 THEN SET mag_scale = 'Heat Wave Magnitude Index or Others';
+    ELSEIF natural_disaster_ID = 4 THEN SET mag_scale = 'Flood magnitude scale or log (Duration × Severity × Area Affected)';
+    ELSEIF natural_disaster_ID = 5 THEN SET mag_scale = 'Others';
+    ELSEIF natural_disaster_ID = 6 THEN SET mag_scale = 'Others';
+    ELSEIF natural_disaster_ID = 7 THEN SET mag_scale = 'Saffir-Simpson Hurricane Wind Scale';
+    ELSEIF natural_disaster_ID = 8 THEN SET mag_scale = 'Volcanic Exposivity Index';
+    ELSEIF natural_disaster_ID = 9 THEN SET mag_scale = 'Integer Classes (for purpose of data analysis)';
+    ELSEIF natural_disaster_ID = 10 THEN SET mag_scale = 'Richter Scale/Tsunami or Seismic Magnitude Scale';
+    END IF; 
+    Return mag_scale;
+END//
+
+SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID) AS 'Magnitude Scale' FROM events; 
+    
+```
+The resulting output from the events table is:
+
+| date | natural_disaster_ID | magnitude | Magnitude Scale | 
+
+|  |  | 
+|  |  |
+|  |  |
+| | | 
+| |  |
+|  | |
+| |  |
+| |  |
 
 ### Queries for Data Analysis
 
@@ -340,6 +385,19 @@ SELECT COUNT(country_code), country_code AS 'Number of Hurricanes' FROM events W
 ``` 
 ... like U.S.A had the highest number of hurricanes during the period of 2000-2022. 
 
+- Importance of certain methods used to deal with disaster
+
+The importance of certain methods to deal with the disaster can be analysed by conducting a query to identify the number of incidents where a certain method has been used (in this instance, the importance of funds for disaster relief). 
+
+``` 
+-- Number of times 'funds' were a method used to deal with aftermath of disaster 
+CREATE VIEW funds AS 
+SELECT country_code, method_to_deal_with_disaster FROM recovery WHERE method_to_deal_with_disaster LIKE '%fund%' GROUP BY country_code; 
+
+SELECT count(country_code) FROM funds;
+``` 
+The above result can be compared with the total number of disasters to establish the importance of receiving funds either from the government or private sector in dealing with the aftermath of a disaster. Further analysis into the correlation between methods to deal with disaster and number of days of recovery can be done to learn more about which methods have been effective in dampening the impact of natural disasters. 
+
 - Establishing other trends
 
 Other trends can be identified by changing the GROUP BY condition accordingly or by using JOIN statements. For example, a trend can be established with magnitudes of a certain disaster such as earthquakes, number of fatalities and dates of disasters. By first getting data using the SELECT statement, a graph with time as the independent variable and other variables such as number of fatalities and magnitudes as the dependent variables can be used to derive relationships.
@@ -358,47 +416,11 @@ SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2;
 -- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
 SELECT c.natural_disaster_ID, c.country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; 
 
-```
-- Generating a stored function to produce magnitude scales for all disasters from 2000-2022 
+OR 
+
+SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table2 GROUP BY country_code, natural_disaster_ID;  
 
 ```
-DELIMITER //
-CREATE FUNCTION magnitude_scale(
-	natural_disaster_ID INT
-) 
-RETURNS VARCHAR(150)
-DETERMINISTIC
-BEGIN
-    DECLARE mag_scale VARCHAR(150);
-	  IF natural_disaster_ID = 1 THEN SET mag_scale = 'Palmer Drought Severity Index';
-    ELSEIF natural_disaster_ID = 2 THEN SET mag_scale = 'Earthquake Magnitude Scale';
-    ELSEIF natural_disaster_ID = 3 THEN SET mag_scale = 'Heat Wave Magnitude Index or Others';
-    ELSEIF natural_disaster_ID = 4 THEN SET mag_scale = 'Flood magnitude scale or log (Duration × Severity × Area Affected)';
-    ELSEIF natural_disaster_ID = 5 THEN SET mag_scale = 'Others';
-    ELSEIF natural_disaster_ID = 6 THEN SET mag_scale = 'Others';
-    ELSEIF natural_disaster_ID = 7 THEN SET mag_scale = 'Saffir-Simpson Hurricane Wind Scale';
-    ELSEIF natural_disaster_ID = 8 THEN SET mag_scale = 'Volcanic Exposivity Index';
-    ELSEIF natural_disaster_ID = 9 THEN SET mag_scale = 'Integer Classes (for purpose of data analysis)';
-    ELSEIF natural_disaster_ID = 10 THEN SET mag_scale = 'Richter Scale/Tsunami or Seismic Magnitude Scale';
-    END IF; 
-    Return mag_scale;
-END//
-
-SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID) AS 'Magnitude Scale' FROM events; 
-    
-```
-The resulting output from the events table is:
-
-| date | natural_disaster_ID | magnitude | Magnitude Scale | 
-
-|  |  | 
-|  |  |
-|  |  |
-| | | 
-| |  |
-|  | |
-| |  |
-| |  |
 
 ### Further Questions/Extensions and Limitations 
 
@@ -437,6 +459,7 @@ Limitations:
 - https://www.nwcg.gov/term/glossary/size-class-of-fire
 - https://floodobservatory.colorado.edu/SatelliteGaugingSites/DFOFloodIndexExplanation.pdf
 - https://www.worldvision.org/disaster-relief-news-stories/2021-hurricane-ida-facts
+- https://ssc.ca.gov/wp-content/uploads/sites/9/2020/08/cssc_08-02_japanearthquake2007finalv5.pdf 
 
 ### Connect with me
 If anything in this project is of interest to you, you're planning to use some of the information or have any questions, please do connect and send a message on Linkedin :) Thanks!
