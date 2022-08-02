@@ -147,7 +147,7 @@ CREATE TABLE fatalities_table_4 (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
 INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2022-08-01', 9, 'US', NULL, 2), 
-('2017-08-17', 7, 'US', 60000, 110), 
+('2017-08-17', 7, 'US', 60000, 110), ('2017-09-16', 7, 'US', 1500, 130), 
 ```
 
 Table 5 (other impacts): 
@@ -161,7 +161,7 @@ CREATE TABLE other_impacts (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
 INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), ('2022-08-01','US', 2500), ('2005-08-23','US', 2000), ('2008-05-12', 'CN', 393035), ('2011-03-11', 'JP', 348798), ('2011-07-25', 'TH', 13600000), ('2012-10-22', 'US', 1000), 
-('2017-08-17', 7, ),   
+('2017-08-17', 'US', 30000), ('2017-09-16', 'US', 2000000),   
   
 ```
 
@@ -177,7 +177,7 @@ CREATE TABLE recovery (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
 INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
-geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), 
+geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), ('2017-08-17', 'US', 1095, '$5.95 billion in federal funding + National Guard for search and rescue, recovery +  Cajun Navy: organization of volunteers + $72 million corporation donation + Others'), ('2017-09-16', 7, 'US', 1500,
    
 
 -- include the word fund if donation or gov. grant above: del this later 
