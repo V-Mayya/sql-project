@@ -88,7 +88,7 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6),  
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6), ('2022-08-01', 9, 'US', 2),  
   
 ```
 
@@ -106,7 +106,8 @@ CREATE TABLE fatalities_table_1 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68),  
+INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68), 
+('2005-08-23', 7, 'US', 400000, 1836), 
   
 -- 2005-2010
 CREATE TABLE fatalities_table_2 (
@@ -119,7 +120,7 @@ CREATE TABLE fatalities_table_2 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11)
+INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11), ('2008-05-12', 2, 'CN', 13500000, 87587), 
   
 -- 2010-2015
 CREATE TABLE fatalities_table_3 (
@@ -145,7 +146,7 @@ CREATE TABLE fatalities_table_4 (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values 
+INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2022-08-01', 9, 'US', NULL, 2), 
  
 ```
 
@@ -159,7 +160,8 @@ CREATE TABLE other_impacts (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
-INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), 
+INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), ('2022-08-01','US', 2500), ('2005-08-23','US', 2000), ('2008-05-12', 'CN', 393035), 
+   
   
 ```
 
@@ -175,7 +177,7 @@ CREATE TABLE recovery (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
 INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
-geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), 
+geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, '')
 
 -- include the word fund if donation or gov. grant above: del this later 
 
