@@ -88,7 +88,7 @@ CREATE TABLE events (
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
   
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2017-08-30', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6), ('2022-08-01', 9, 'US', 2),  
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6), ('2022-08-01', 9, 'US', 2), ('2016-04-16', 2, 'JP', 7.0),   
   
 ```
 
@@ -147,7 +147,7 @@ CREATE TABLE fatalities_table_4 (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
 INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2022-08-01', 9, 'US', NULL, 2), 
-('2017-08-17', 7, 'US', 60000, 110), ('2017-09-16', 7, 'US', 1500, 130), 
+('2017-08-17', 7, 'US', 60000, 110), ('2017-09-16', 7, 'US', 1500, 130), ('2021-08-26', 7, 'US', 200, 107), ('2016-04-16', 2, 'JP', 10000, 226), 
 ```
 
 Table 5 (other impacts): 
@@ -161,7 +161,7 @@ CREATE TABLE other_impacts (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
   
 INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), ('2022-08-01','US', 2500), ('2005-08-23','US', 2000), ('2008-05-12', 'CN', 393035), ('2011-03-11', 'JP', 348798), ('2011-07-25', 'TH', 13600000), ('2012-10-22', 'US', 1000), 
-('2017-08-17', 'US', 30000), ('2017-09-16', 'US', 2000000),   
+('2017-08-17', 'US', 30000), ('2017-09-16', 'US', 2000000), ('2021-08-26', 'US', 14000), ('2016-04-16', 'JP', 3129), 
   
 ```
 
@@ -177,7 +177,7 @@ CREATE TABLE recovery (
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
 INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
-geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), ('2017-08-17', 'US', 1095, '$5.95 billion in federal funding + National Guard for search and rescue, recovery +  Cajun Navy: organization of volunteers + $72 million corporation donation + Others'), ('2017-09-16', 7, 'US', 1500,
+geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), ('2017-08-17', 'US', 1095, '$5.95 billion in federal funding + National Guard for search and rescue, recovery +  Cajun Navy: organization of volunteers + $72 million corporation donation + Others'), ('2017-09-16', 'US', 1460, 'Evacuation + Relief Supplies + Emergency Aid + £25 million funding + others'), ('2021-08-26', 'US', 60, 'Repairing transmission line + Donations/funds + 25,000 workers and 5000 national guards + Others'), ('2016-04-16', 'JP', 365, 'National and Kumamoto governments helping to cover expenses + Financial institution support + 170.4 million yen fund + Others'),  
    
 
 -- include the word fund if donation or gov. grant above: del this later 
@@ -188,14 +188,13 @@ Tables 7 and 8 (economic impact):
 
 ```
 CREATE TABLE economic_impact_1 (
-  total_monetary_impact INT,
+  total_monetary_impact DEC(10,2),
   date DATE,
   country_code VARCHAR(10) 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
- INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40, '2004-10-23', 'JP'), (173, '2005-08-23', 'US'), (107,'2008-05-12', 
- 'CN'), (253, '2011-03-11', 'JP'), (48, '2011-07-25', 'TH'), (59, '2012-10-22', 'US'), (105, '2017-08-17', 'US'), (75, '2017-09-16', 'US'), (63, '2017-08-30', 'US'), (65, '2021-08-26', 'US')
+ INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40.0, '2004-10-23', 'JP'), (173.0, '2005-08-23', 'US'), (107.0,'2008-05-12', 'CN'), (253.0, '2011-03-11', 'JP'), (48.0, '2011-07-25', 'TH'), (59.0, '2012-10-22', 'US'), (105.0, '2017-08-17', 'US'), (75.0, '2017-09-16', 'US'), (63.0, '2017-08-30', 'US'), (65.0, '2021-08-26', 'US'), (0.1,'2022-08-01', 'US'), (7.5, '2016-04-16', 'JP'), 
  
  -- Note: Data from the international disasters database EM-DAT
   
