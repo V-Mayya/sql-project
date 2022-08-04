@@ -48,9 +48,9 @@ Data points with value NULL represent either N/A if magnitude is not measured in
 **SUPPORT**: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
 
 ```
-CREATE DATABASE natural disasters;
+CREATE DATABASE naturaldisasters;
 
-USE natural disasters;
+USE naturaldisasters;
 ```
 Some of the tables will have primary and foreign constraints. The first table is for countries with country_unique_ID to uniquely identify all lists of countries. Creating and inserting data into the tables:
 
@@ -175,7 +175,7 @@ CREATE TABLE recovery (
   date DATE,
   country_code VARCHAR(10),
   days_to_recover INT,
-  method_to_deal_with_disaster VARCHAR(5000) 
+  method_to_deal_with_disaster VARCHAR(5000), 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
@@ -193,7 +193,7 @@ Tables 7 and 8 (economic impact):
 CREATE TABLE economic_impact_1 (
   total_monetary_impact DEC(10,2),
   date DATE,
-  country_code VARCHAR(10) 
+  country_code VARCHAR(10), 
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
   
@@ -201,8 +201,8 @@ CREATE TABLE economic_impact_1 (
  
  -- Note: Data from the international disasters database EM-DAT
   
- CREATE TABLE economic_impact_2 
-  %_of_global_GDP DEC(10,2),
+ CREATE TABLE economic_impact_2 (
+  percentage_of_global_GDP DEC(10,2),
   region VARCHAR(100)); 
   
  INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
@@ -289,7 +289,7 @@ In the case of Japan, total economic damage of major natural disasters during th
 Learning more about Japan's economic resilience can help other countries build plans and policies to deal with such issues. 
 
 ```
-SELECT %_of_global_GDP, region FROM economic_impact_2 ORDER BY %_of_global_GDP desc; 
+SELECT percentage_of_global_GDP, region FROM economic_impact_2 ORDER BY percentage_of_global_GDP desc; 
 ```
 | region | %_of_global_GDP | 
 | South Asia | 15 | 
