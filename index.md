@@ -17,7 +17,7 @@ The creation of this project is intended to:
 ### Setting up tables, columns and ER diagram
 
 **ER DIAGRAM*
-![ER Diagram of Database](/sql-project/index.md/ERdiagram-NaturalDisasters.png)
+![ER Diagram of Database](ER diagram - Natural Disasters.png)
 
 **COUNTRIES**: country_unique_ID, country_code, countries where disaster struck along with their respective regions
 
