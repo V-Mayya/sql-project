@@ -80,7 +80,7 @@ CREATE TABLE types (
 INSERT INTO types (natural_disaster_ID, type) Values (1, 'Drought'), (2, 'Earthquake'), (3, 'Extreme Temperature'), (4, 'Flood'), (5, 'Landslide'), (6, 'Mass Movement'), (7, 'Storm/Cyclone/Hurricane'), (8, 'Volcanic activity'), (9, 'Wildfire'), (10, 'Tsunami'); 
 
 ```
-![Natural Disaster Types Table](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/types.png))
+![Natural Disaster Types Table](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/types.png)
 
 Table 3 (events): 
 
@@ -295,15 +295,7 @@ Learning more about Japan's economic resilience can help other countries build p
 ```
 SELECT percentage_of_global_GDP, region FROM economic_impact_2 ORDER BY percentage_of_global_GDP desc; 
 ```
-| region | %_of_global_GDP | 
-| South Asia | 15 | 
-| Central Asia | 6.6 |
-| Sub-Saharan Africa | 6.1 |
-| Middle East and North Africa | 5.7 | 
-| East Asia and Pacific | 4.7 |
-| World | 4.0 |
-| Latin America and Caribbean | 3.0 |
-| Europe | 0.7 |
+![Economic Impact 2](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/economicimpact2.png)
 
 The data demonstrates how the impact of climate change that has resulted in natural disasters has had varying effects based on different regions. According to S&P Global Ratings, South Asia is around 10 times more exposed to the economic impact of climate change compared to Europe. 'Climate change could see 4% of global annual economic output lost by 2050 and hit many poorer parts of the world disproportionately hard, a new study of 135 countries has estimated.' By ordering the data, it can observed that South Asia has the highest disaster losses as a % of GDP with Central Asia just below. 
 
