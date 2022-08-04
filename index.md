@@ -14,7 +14,10 @@ The creation of this project is intended to:
 - learn about which methods were best to recover from the aftermath of a disaster 
 - learn more about the economic resilience and unity of a nation during moments of crisis
 
-### Setting up tables and columns
+### Setting up tables, columns and ER diagram
+
+**ER DIAGRAM*
+![ER Diagram of Database](/least-github-pages/assets/logo.png)
 
 **COUNTRIES**: country_unique_ID, country_code, countries where disaster struck along with their respective regions
 
