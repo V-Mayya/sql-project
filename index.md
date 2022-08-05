@@ -433,6 +433,7 @@ Extensions:
 - Can customise stored function further by presenting a detailed output of severity of disaster based on magnitude scale and values (e.g: magnitude > 6.0 on the earthquake magnitude scale means severe damage to property, etc.)
 - Include other useful SQL features such as stored procedures to run the trigger, running an event and others
 - Need to account for incidents that involved tsunamis that resulted from an earthquake
+- Extend the stored function to give an output of NULL if magnitude = NULL (AND natural_disaster_ID = either one of the numbers) 
 
 Limitations: 
 - Limitation could be natural disasters accounts for only small number of fatalities/gdp loss compared to other things but still equally impactful 
