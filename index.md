@@ -378,10 +378,10 @@ SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events WHERE na
 As an example, we can compare the number of hurricanes during the period of 2000-2022 to find which country has had the highest number of hurricanes. 
 
 ``` 
-SELECT COUNT(country_code), country_code AS 'Number of Hurricanes' FROM events WHERE natural_disaster_ID = 7 GROUP BY country_code ORDER BY COUNT(country_code) desc;
+SELECT COUNT(country_code) AS 'Number of Hurricanes', country_code FROM events WHERE natural_disaster_ID = 7 GROUP BY country_code ORDER BY COUNT(country_code) desc;
 
 ``` 
-... like U.S.A had the highest number of hurricanes during the period of 2000-2022. 
+U.S.A had the highest number of hurricanes during the period of 2000-2022 as of current data collection. 
 
 - Importance of certain methods used to deal with disaster
 
@@ -390,7 +390,7 @@ The importance of certain methods to deal with the disaster can be analysed by c
 ``` 
 -- Number of times 'funds' were a method used to deal with aftermath of disaster 
 CREATE VIEW funds AS 
-SELECT country_code, method_to_deal_with_disaster FROM recovery WHERE method_to_deal_with_disaster LIKE '%fund%' GROUP BY country_code; 
+SELECT country_code, method_to_deal_with_disaster FROM recovery WHERE method_to_deal_with_disaster LIKE '%fund%'; 
 
 SELECT count(country_code) FROM funds;
 ``` 
@@ -400,25 +400,22 @@ The above result can be compared with the total number of disasters to establish
 
 Other trends can be identified by changing the GROUP BY condition accordingly or by using JOIN statements. For example, a trend can be established with magnitudes of a certain disaster such as earthquakes, number of fatalities and dates of disasters. By first getting data using the SELECT statement, a graph with time as the independent variable and other variables such as number of fatalities and magnitudes as the dependent variables can be used to derive relationships.
 
-In this instance, a causal relationship between magnitudes of earthquake and number of fatalities over time can be established (based on a priori hypothesis and intuition). However, in most instances, since correlation is not causation, more information is needed to establish trends. 
+In this instance, a causal relationship between magnitudes of earthquake and number of fatalities over time cannot be established (despite a priori hypothesis and intuition). In most instances, since correlation is not causation, more information is needed to establish trends. 
 
 ```
 -- Relationship between magnitudes of earthquakes and number of fatalities over time (2000-2022)
 CREATE VIEW magnitude_and_fatalities_view AS
-SELECT c.date, c.natural_disaster_ID, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date INNER JOIN fatalities_table_2 e ON c.date = e.date INNER JOIN fatalities_table_3 f ON c.date = f.date INNER JOIN fatalities_table_4 g ON c.date = g.date; 
+(SELECT c.date, c.natural_disaster_ID, c.magnitude, d.number_of_fatalities FROM events c INNER JOIN fatalities_table_1 d ON c.date = d.date) UNION ALL (SELECT c.date, c.natural_disaster_ID, c.magnitude, e.number_of_fatalities FROM events c INNER JOIN fatalities_table_2 e ON c.date = e.date) UNION ALL (SELECT c.date, c.natural_disaster_ID, c.magnitude, f.number_of_fatalities FROM events c INNER JOIN fatalities_table_3 f ON c.date = f.date) UNION ALL (SELECT c.date, c.natural_disaster_ID, c.magnitude, g.number_of_fatalities FROM events c INNER JOIN fatalities_table_3 g ON c.date = g.date); 
 
 -- Full view and condition to find relationship between magnitudes of earthquakes and number of fatalities over time
 SELECT * FROM magnitude_and_fatalities_view; 
-SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2; 
+SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2 ORDER BY magnitude asc; 
 
--- Total number of fatalities by natural disaster type and country (or remove country_code completely) 
-SELECT c.natural_disaster_ID, c.country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM fatalities_table_1 c INNER JOIN fatalities_table_2 d ON natural_disaster_ID.c = natural_disaster_ID.d INNER JOIN fatalities_table_3 e ON natural_disaster_ID.d = natural_disaster_ID.e INNER JOIN fatalities_table_4 f ON natural_disaster_ID.e = natural_disaster_ID.f; 
-
-OR 
-
+-- Total number of fatalities by natural disaster type and country 
 SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table2 GROUP BY country_code, natural_disaster_ID;  
 
 ```
+
 
 ### Further Questions/Extensions and Limitations 
 
