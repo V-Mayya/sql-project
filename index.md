@@ -361,7 +361,7 @@ Given the current data collected, the output is:
 ![earthquakes destructive >= 6](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/earthquakesgraph.png)
 
 From the output, it can be observed that Japan had the highest number of destructive earthquakes during the period of 2000-2022. 
-
+  
 ``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
 
