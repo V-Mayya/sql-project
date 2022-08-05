@@ -49,7 +49,7 @@ Data points with value NULL represent either N/A if magnitude is not measured in
 
 2. Table 2: disaster losses as a % of global GDP, country_unique_ID, dates of natural disasters 
 
-**SUPPORT**: organisations that have offered support during the aftermath, total amount of support offered, country_unique_ID
+**SUPPORT**: organisations that have offered support during the aftermath, country_unique_ID
 
 ```
 CREATE DATABASE naturaldisasters;
@@ -63,16 +63,15 @@ Some of the tables will have primary and foreign constraints. The first table is
 CREATE TABLE countries (
   country_unique_ID INT,
   country_code VARCHAR(10) UNIQUE,
-  country VARCHAR(35),  
+  country VARCHAR(150),  
   CONSTRAINT PK_country_unique_ID PRIMARY KEY (country_unique_ID)); 
   
-INSERT INTO countries (country_unique_ID, country_code, country) Values (1, 'AF', Afghanistan'),(2,'AL' 'Albania'),(3, 'DZ', 'Algeria'),(4, 'AS', 'American Samoa'),(5, 'AD', 'Andorra'),(6, 'AO', 'Angola'),(7, 'AI', 'Anguilla'),(8, 'AQ', 'Antarctica'),(9, 'AG', 'Antigua And Barbuda'),(10, 'AR', 'Argentina'),(11, 'AM','Armenia'),(12, 'AW','Aruba'),(13, 'AU', 'Australia'), (14, 'AT’, 'Austria'),(15, 'AZ’, 'Azerbaijan'),(16, 'BS’, 'Bahamas'),(17, 'BH’, 'Bahrain'),(18, 'BD’, 'Bangladesh'),(19, 'BB’, 'Barbados'),(20, 'BY’, 'Belarus'),(21, 'BE’, 'Belgium'),(22, 'BZ’, 'Belize'),(23, 'BJ’, 'Benin'),(24, 'BM’, 'Bermuda'),(25, 'BT’, 'Bhutan'),(26, 'BO’, 'Bolivia'),(27, 'BA’, 'Bosnia And Herzegovina'),(28, 'BW’, 'Botswana'),(29, 'BV’, 'Bouvet Island'),(30, 'BR’, 'Brazil'),(31, 'IO’, 'British Indian Ocean Territory'),(32, 'BN’, 'Brunei Darussalam'),(33, 'BG’, 'Bulgaria'),(34, 'BF’, 'Burkina Faso'),(35, 'BI’, 'Burundi)',(36, 'KH’, 'Cambodia'),(37, 'CM’, 'Cameroon'),(38, 'CA’, 'Canada'),(39, 'CV’, 'Cape Verde'),(40, 'KY’, 'Cayman Islands'),(41, 'CF’, 'Central African Republic'),(42, 'TD’, 'Chad'),(43, 'CL’, 'Chile'),(44, 'CN’, 'China'),(45, 'CX’, 'Christmas Island'),(46, 'CC’, 'Cocos (keeling) Islands'),(47, 'CO’, 'Colombia'),(48, 'KM’, 'Comoros'),(49, 'CG’, 'Congo'),(50, 'CD’, 'Congo),(51, 'CK’, 'Cook Islands'),(52, 'CR’, 'Costa Rica'),(53, 'CI’, 'Cote D'ivoire'),(54, 'HR’, 'Croatia'),(55, 'CU’, 'Cuba'),(56, 'CY’, 'Cyprus'),(57, 'CZ’, 'Czech Republic'),(58, 'DK’, 'Denmark'),(59, 'DJ’, 'Djibouti'),(60, 'DM’, 'Dominica'),(61, 'DO’, 'Dominican Republic'),(62, 'TP’, 'East Timor'),(63, 'EC’, 'EcuadorDo '),(64, 'EG’, 'Egypt'),(65, 'SV’, 'El Salvador'),(66, 'GQ’, 'Equatorial Guinea'),(67, 'ER’, 'Eritrea'),(68, 'EE’, 'Estonia'),(69, 'ET’, 'Ethiopia'),(70, 'FK’, 'Falkland Islands (malvinas)'),(71, 'FO’, 'Faroe Islands'),(72, 'FJ, 'Fiji'),(73, 'FI’, 'Finland'),(74, 'FR’, 'France'),(75, 'GF’, 'French Guiana'),(76, 'PF’, 'French Polynesia'),(77, 'TF’, 'French Southern Territories'),(78, 'GA’, 'Gabon'),(79, 'GM’, 'Gambia'),(80, 'GE’, 'Georgia'),(81, 'DE’, 'Germany'),(82, 'GH’, 'Ghana'),(83, 'GI’, 'Gibraltar'),(84, 'GR’, 'Greece'),(85, 'GL’, 'Greenland'),(86, 'GD’, 'Grenada'),(87, 'GP’, 'Guadeloupe'),(88, 'GU’, 'Guam'),(89, 'GT’, 'Guatemala'),(90, 'GN’, 'Guinea'),(91, 'GW’, 'Guinea-bissau'),(92, 'GY’, 'Guyana'),(93, 'HT’, 'Haiti'),(94, 'HM’, 'Heard Island And Mcdonald Islands'),(95, 'VA’, 'Holy See (vatican City State)'),(96, 'HN’, 'Honduras'),(97, 'HK’, 'Hong Kong'),(98, 'HU’, 'Hungary'),(99, 'IS’, 'Iceland'),(100, 'IN’, 'India'),(101, 'ID’, 'Indonesia'),(102, 'IR’, 'Iran),(103, 'IQ’, 'Iraq'),(104, 'IE’, 'Ireland)',(105, 'IL’, 'Israel'),(106, 'IT’, 'Italy'),(107, 'JM’, 'Jamaica'),(108, 'JP’, 'Japan'),(109, 'JO’, 'Jordan'),(110, 'KZ’, 'Kazakstan'),(111, 'KE’, 'Kenya'),(112, 'KI’, 'Kiribati'),(113, 'KP’, 'Korea, Democratic People's Republic Of'),(114, 'KR’, 'Korea’, Republic Of '),(115, 'KV’, 'Kosovo'), (116, 'KW’, 'Kuwait'),(117, 'KG’, 'Kyrgyzstan'),(118, 'LA’, 'Lao People's Democratic Republic'),(119, 'LV’, 'Latvia'),(120, 'LB’, 'Lebanon'),(121, 'LS’, 'Lesotho'),(122, 'LR’, 'Liberia'),(123, 'LY’, 'Libyan Arab Jamahiriya'),(124, 'LI’, 'Liechtenstein'),(125, 'LT’, 'Lithuania'),(126, 'LU’, 'Luxembourg'),(127, 'MO’, 'Macau'),(128, 'MK’, 'Macedonia, The Former Yugoslav Republic Of'),(129, 'MG’, 'Madagascar'),(130, 'MW’, 'Malawi'),(131, 'MY’, 'Malaysia'),(132, 'MV’, 'Maldives'),(133, 'ML’, 'Mali'),(134, 'MT’, 'Malta'),(135, 'MH’, 'Marshall Islands'),(136, 'MQ’, 'Martinique'),(137, 'MR’, 'Mauritania'),(138, 'MU’, 'Mauritius'),(139, 'YT’, 'Mayotte'),(140, 'MX’, 'Mexico'),(141, 'FM’, 'Micronesia, Federated States Of'),(142, 'MD’, 'Moldova, Republic Of'),(143, 'MC’, 'Monaco'),(144, 'MN’, 'Mongolia'),(145, 'MS’, 'Montserrat'),(146, 'ME’, 'Montenegro'),(147, ‘MA’, 'Morocco'),(148, 'MZ’, 'Mozambique'),(149, 'MM’, 'Myanmar'),(150, 'NA’, 'Namibia'),(151, 'NR’, 'Nauru'),(152, 'NP’, 'Nepal'),(153, 'NL’, 'Netherlands),(154, 'AN’, 'Netherlands Antilles'),(155, 'NC’, 'New Caledonia'),(156, 'NZ’, 'New Zealand'),(157, 'NI’, 'Nicaragua'),(158, 'NE’, 'Niger'),(159, 'NG’, 'Nigeria'),(160, 'NU’, 'Niue'),(161, 'NF’, 'Norfolk Island'),(162, 'MP, Northern Mariana Islands'),(163, 'NO’, 'Norway'),(164, 'OM’, 'Oman'),(165, 'PK’, 'Pakistan'),(166, 'PW’, 'Palau'),(167, 'PS’, 'Palestinian Territory, Occupied'),(168, 'PA’, 'Panama'),(169, 'PG’, 'Papua New Guinea'),(170, 'PY’, 'Paraguay'),(171, 'PE’, 'Peru'),(172, 'PH’, 'Philippines'),(173, 'PN’, 'Pitcairn'),(174, 'PL’, 'Poland'),(175, 'PT’, 'Portugal'),(176, 'PR, 'Puerto Rico'),(177, 'QA’, 'Qatar'),(178, 'RE’, 'Reunion'),(179, 'RO’, 'Romania'),(180, 'RU’, 'Russian Federation'),(181, 'RW’, 'Rwanda'),(182, 'SH’, 'Saint Helena'),(183, 'KN’, 'Saint Kitts And Nevis'),(184, 'LC’, 'Saint Lucia'),(185, 'PM’, 'Saint Pierre And Miquelon'),(186, 'VC’, 'Saint Vincent And The Grenadines'),(187, 'WS’, 'Samoa'),(188, 'SM’, 'San Marino'),(189, 'ST’, 'Sao Tome And Principe'),(190, 'SA’, 'Saudi Arabia'),(191, 'SN’, 'Senegal'),(192, 'RS’, 'Serbia'),(193, 'SC’, 'Seychelles'),(194, 'SL’, 'Sierra Leone'),(195, 'SG’, 'Singapore'),(196, 'SK’, 'Slovakia'),(197, 'SI’, 'Slovenia'),(198, 'SB’, 'Solomon Islands'),(199, 'SO’, 'Somalia'),(200, 'ZA’, 'South Africa'),(201, 'GS’, 'South Georgia And The South Sandwich Islands'),(202, 'ES’, 'Spain'),(203, 'LK’, 'Sri Lanka'),(204, 'SD’, 'Sudan'),(205, 'SR’, 'Suriname'),(206, 'SJ’, 'Svalbard And Jan Mayen'),(207, 'SZ’, 'Swaziland'),(208, 'SE’, 'Sweden'),(209, 'CH’,'Switzerland'),(210, 'SY’, 'Syrian Arab Republic'),(211, 'TW’, 'Taiwan, Province Of China'),(212, 'TJ’, 'Tajikistan'),(213, 'TZ’, 'Tanzania,United Republic Of'),(214, 'TH’, 'Thailand'),(215, 'TG’, 'Togo)',(216, 'TK’, 'Tokelau'),(217, 'TO’, 'Tonga'),(218, 'TT’, 'Trinidad And Tobago'),(219, 'TN’, 'Tunisia'),(220, 'TR’, 'Turkey'),(221, 'TM', 'Turkmenistan'),(222, 'TC’, 'Turks And Caicos Islands'),(223, 'TV’, 'Tuvalu'),(224, 'UG’, 'Uganda'),(225, 'UA’, 'Ukraine'),(226, 'AE’, 'United Arab Emirates'),(227, 'GB’, 'United Kingdom'),(228, 'US’, 'United States'),(229, 'UM’, 'United States Minor Outlying Islands'),(230, 'UY’, 'Uruguay'),(231, 'UZ’, 'Uzbekistan'),(232, 'VU’, 'Vanuatu'),(233, 'VE’, 'Venezuela'),(234, 'VN’, 'Vietnam'),(235, 'VG’, 'Virgin Islands, British'),(236, 'VI’, 'Virgin Islands, U.S.'),(237, 'WF’, 'Wallis And Futuna'),(238, 'EH’, 'Western Sahara'),(239, 'YE’, 'Yemen'),(240, 'ZM’, 'Zambia'),(241, 'ZW’, 'Zimbabwe); 
-  
+INSERT INTO countries (country_unique_ID, country_code, country) Values (1, 'AF', 'Afghanistan'), (2,'AL', 'Albania'),(3, 'DZ', 'Algeria'),(4, 'AS', 'American Samoa'),(5, 'AD', 'Andorra'),(6, 'AO', 'Angola'),(7, 'AI', 'Anguilla'),(8, 'AQ', 'Antarctica'),(9, 'AG', 'Antigua And Barbuda'),(10, 'AR', 'Argentina'),(11, 'AM','Armenia'),(12, 'AW','Aruba'),(13, 'AU', 'Australia'), (14, 'AT', 'Austria'),(15, 'AZ', 'Azerbaijan'),(16, 'BS', 'Bahamas'),(17, 'BH', 'Bahrain'),(18, 'BD', 'Bangladesh'),(19, 'BB', 'Barbados'),(20, 'BY', 'Belarus'),(21, 'BE', 'Belgium'),(22, 'BZ', 'Belize'),(23, 'BJ', 'Benin'),(24, 'BM', 'Bermuda'),(25, 'BT', 'Bhutan'),(26, 'BO', 'Bolivia'),(27, 'BA', 'Bosnia And Herzegovina'),(28, 'BW', 'Botswana'),(29, 'BV', 'Bouvet Island'),(30, 'BR', 'Brazil'),(31, 'IO', 'British Indian Ocean Territory'),(32, 'BN', 'Brunei Darussalam'),(33, 'BG', 'Bulgaria'),(34, 'BF', 'Burkina Faso'),(35, 'BI', 'Burundi'),(36, 'KH', 'Cambodia'),(37, 'CM', 'Cameroon'),(38, 'CA', 'Canada'),(39, 'CV', 'Cape Verde'),(40, 'KY', 'Cayman Islands'),(41, 'CF', 'Central African Republic'),(42, 'TD', 'Chad'),(43, 'CL', 'Chile'),(44, 'CN', 'China'),(45, 'CX', 'Christmas Island'),(46, 'CC', 'Cocos (keeling) Islands'),(47, 'CO', 'Colombia'),(48, 'KM', 'Comoros'),(49, 'CG', 'Congo'),(50, 'CD', 'Congo'),(51, 'CK', 'Cook Islands'),(52, 'CR', 'Costa Rica'),(53, 'CI', 'Cote Divoire'),(54, 'HR', 'Croatia'),(55, 'CU', 'Cuba'),(56, 'CY', 'Cyprus'),(57, 'CZ', 'Czech Republic'),(58, 'DK', 'Denmark'),(59, 'DJ', 'Djibouti'),(60, 'DM', 'Dominica'),(61, 'DO', 'Dominican Republic'),(62, 'TP', 'East Timor'),(63, 'EC', 'EcuadorDo '),(64, 'EG', 'Egypt'),(65, 'SV', 'El Salvador'),(66, 'GQ', 'Equatorial Guinea'),(67, 'ER', 'Eritrea'),(68, 'EE', 'Estonia'),(69, 'ET', 'Ethiopia'),(70, 'FK', 'Falkland Islands (malvinas)'),(71, 'FO', 'Faroe Islands'),(72, 'FJ', 'Fiji'),(73, 'FI', 'Finland'),(74, 'FR', 'France'),(75, 'GF', 'French Guiana'),(76, 'PF', 'French Polynesia'),(77, 'TF', 'French Southern Territories'),(78, 'GA', 'Gabon'),(79, 'GM', 'Gambia'),(80, 'GE', 'Georgia'),(81, 'DE', 'Germany'),(82, 'GH', 'Ghana'),(83, 'GI', 'Gibraltar'),(84, 'GR', 'Greece'),(85, 'GL', 'Greenland'),(86, 'GD', 'Grenada'),(87, 'GP', 'Guadeloupe'),(88, 'GU', 'Guam'),(89, 'GT', 'Guatemala'),(90, 'GN', 'Guinea'),(91, 'GW', 'Guinea-bissau'),(92, 'GY', 'Guyana'),(93, 'HT', 'Haiti'),(94, 'HM', 'Heard Island And Mcdonald Islands'),(95, 'VA', 'Holy See (vatican City State)'),(96, 'HN', 'Honduras'),(97, 'HK', 'Hong Kong'),(98, 'HU', 'Hungary'),(99, 'IS', 'Iceland'),(100, 'IN', 'India'),(101, 'ID', 'Indonesia'), (102, 'IR', 'Iran'),(103, 'IQ', 'Iraq'),(104, 'IE', 'Ireland'),(105, 'IL', 'Israel'),(106, 'IT', 'Italy'),(107, 'JM', 'Jamaica'),(108, 'JP', 'Japan'),(109, 'JO', 'Jordan'),(110, 'KZ', 'Kazakstan'),(111, 'KE', 'Kenya'),(112, 'KI', 'Kiribati'),(113, 'KP', 'Korea, Democratic Peoples Republic Of'),(114, 'KR', 'Korea Republic Of '),(115, 'KV', 'Kosovo'), (116, 'KW', 'Kuwait'),(117, 'KG', 'Kyrgyzstan'),(118, 'LA', 'Lao Peoples Democratic Republic'),(119, 'LV', 'Latvia'),(120, 'LB', 'Lebanon'),(121, 'LS', 'Lesotho'),(122, 'LR', 'Liberia'),(123, 'LY', 'Libyan Arab Jamahiriya'),(124, 'LI', 'Liechtenstein'),(125, 'LT', 'Lithuania'),(126, 'LU', 'Luxembourg'),(127, 'MO', 'Macau'),(128, 'MK', 'Macedonia, The Former Yugoslav Republic Of'),(129, 'MG', 'Madagascar'),(130, 'MW', 'Malawi'),(131, 'MY', 'Malaysia'),(132, 'MV', 'Maldives'),(133, 'ML', 'Mali'),(134, 'MT', 'Malta'),(135, 'MH', 'Marshall Islands'),(136, 'MQ', 'Martinique'),(137, 'MR', 'Mauritania'),(138, 'MU', 'Mauritius'),(139, 'YT', 'Mayotte'),(140, 'MX', 'Mexico'),(141, 'FM', 'Micronesia, Federated States Of'),(142, 'MD', 'Moldova, Republic Of'),(143, 'MC', 'Monaco'),(144, 'MN', 'Mongolia'),(145, 'MS', 'Montserrat'),(146, 'ME', 'Montenegro'),(147, 'MA', 'Morocco'),(148, 'MZ', 'Mozambique'),(149, 'MM', 'Myanmar'),(150, 'NA', 'Namibia'),(151, 'NR', 'Nauru'),(152, 'NP', 'Nepal'),(153, 'NL', 'Netherlands'),(154, 'AN', 'Netherlands Antilles'),(155, 'NC', 'New Caledonia'),(156, 'NZ', 'New Zealand'),(157, 'NI', 'Nicaragua'),(158, 'NE', 'Niger'),(159, 'NG', 'Nigeria'),(160, 'NU', 'Niue'),(161, 'NF', 'Norfolk Island'),(162, 'MP', 'Northern Mariana Islands'),(163, 'NO', 'Norway'),(164, 'OM', 'Oman'),(165, 'PK', 'Pakistan'),(166, 'PW', 'Palau'),(167, 'PS', 'Palestinian Territory, Occupied'),(168, 'PA', 'Panama'),(169, 'PG', 'Papua New Guinea'),(170, 'PY', 'Paraguay'),(171, 'PE', 'Peru'),(172, 'PH', 'Philippines'),(173, 'PN', 'Pitcairn'),(174, 'PL', 'Poland'),(175, 'PT', 'Portugal'),(176, 'PR', 'Puerto Rico'),(177, 'QA', 'Qatar'),(178, 'RE', 'Reunion'),(179, 'RO', 'Romania'),(180, 'RU', 'Russian Federation'),(181, 'RW', 'Rwanda'),(182, 'SH', 'Saint Helena'),(183, 'KN', 'Saint Kitts And Nevis'),(184, 'LC', 'Saint Lucia'),(185, 'PM', 'Saint Pierre And Miquelon'),(186, 'VC', 'Saint Vincent And The Grenadines'),(187, 'WS', 'Samoa'),(188, 'SM', 'San Marino'),(189, 'ST', 'Sao Tome And Principe'),(190, 'SA', 'Saudi Arabia'),(191, 'SN', 'Senegal'),(192, 'RS', 'Serbia'),(193, 'SC', 'Seychelles'),(194, 'SL', 'Sierra Leone'),(195, 'SG', 'Singapore'),(196, 'SK', 'Slovakia'),(197, 'SI', 'Slovenia'),(198, 'SB', 'Solomon Islands'),(199, 'SO', 'Somalia'),(200, 'ZA', 'South Africa'), (201, 'GS', 'South Georgia And The South Sandwich Islands'),(202, 'ES', 'Spain'),(203, 'LK', 'Sri Lanka'),(204, 'SD', 'Sudan'),(205, 'SR', 'Suriname'),(206, 'SJ', 'Svalbard And Jan Mayen'),(207, 'SZ', 'Swaziland'),(208, 'SE', 'Sweden'),(209, 'CH','Switzerland'),(210, 'SY', 'Syrian Arab Republic'),(211, 'TW', 'Taiwan, Province Of China'),(212, 'TJ', 'Tajikistan'),(213, 'TZ', 'Tanzania,United Republic Of'),(214, 'TH', 'Thailand'),(215, 'TG', 'Togo'),(216, 'TK', 'Tokelau'),(217, 'TO', 'Tonga'),(218, 'TT', 'Trinidad And Tobago'),(219, 'TN', 'Tunisia'),(220, 'TR', 'Turkey'),(221, 'TM', 'Turkmenistan'),(222, 'TC', 'Turks And Caicos Islands'),(223, 'TV', 'Tuvalu'),(224, 'UG', 'Uganda'),(225, 'UA', 'Ukraine'),(226, 'AE', 'United Arab Emirates'),(227, 'GB', 'United Kingdom'),(228, 'US', 'United States'),(229, 'UM', 'United States Minor Outlying Islands'),(230, 'UY', 'Uruguay'),(231, 'UZ', 'Uzbekistan'),(232, 'VU', 'Vanuatu'),(233, 'VE', 'Venezuela'),(234, 'VN', 'Vietnam'),(235, 'VG', 'Virgin Islands, British'),(236, 'VI', 'Virgin Islands, U.S.'),(237, 'WF', 'Wallis And Futuna'),(238, 'EH', 'Western Sahara'),(239, 'YE', 'Yemen'),(240, 'ZM', 'Zambia'),(241, 'ZW', 'Zimbabwe'); 
+
 ```
 The next table lists the types of natural disasters along with a unique ID as well. 
 
 ```
--- Table 2
 CREATE TABLE types (
   natural_disaster_ID INT,
   type VARCHAR(40), 
@@ -94,8 +93,7 @@ CREATE TABLE events (
   CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
   CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
-  
-INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.8), ('2005-08-23', 7, 'US', 5), ('2008-05-12', 2, 'CN', 7.9), ('2011-03-11', 2, 'JP', 7.4), ('2011-07-25', 4, 'TH', 7), ('2012-10-22', 7, 'US', 3), ('2017-08-17', 7, 'US', 4), ('2017-09-16', 7, 'US', 5), ('2021-08-26', 7, 'US', 4), ('2007-07-16', 2, 'JP', 6.6), ('2022-08-01', 9, 'US', 2), ('2016-04-16', 2, 'JP', 7.0), and others; 
+INSERT INTO events (date, natural_disaster_ID, country_code, magnitude) Values ('2004-10-23', 2, 'JP', 6.80), ('2005-08-23', 7, 'US', 5.00), ('2008-05-12', 2, 'CN', 7.90), ('2011-03-11', 2, 'JP', 7.40), ('2011-07-25', 4, 'TH', 7.00), ('2012-10-22', 7, 'US', 3.00), ('2017-08-17', 7, 'US', 4.00), ('2017-09-16', 7, 'US', 5.00), ('2021-08-26', 7, 'US', 4.00), ('2007-07-16', 2, 'JP', 6.60), ('2022-08-01', 9, 'US', 2.00), ('2016-04-16', 2, 'JP', 7.00), ('2001-01-29',3,'AF', 5.00),  ('2021-09-07', 4, 'MX', NULL), and others; 
   
 -- all data has been collected by researching into major natural disasters during 2000-2022 
 ```
@@ -109,14 +107,12 @@ CREATE TABLE fatalities_table_1 (
   species_impacted VARCHAR(55),
   country_code VARCHAR(10),
   natural_disaster_ID INT,
-  date DATE, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
-  
-INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68), 
-('2005-08-23', 7, 'US', 400000, 1836), and others;
-  
+  date DATE,
+CONSTRAINT FK_country_code_fata1 FOREIGN KEY (country_code) references countries(country_code),
+CONSTRAINT FK_natural_disaster_ID_fata1 FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
+
+INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68), ('2005-08-23', 7, 'US', 400000, 1836), ('2001-01-29',3,'AF', 0,150), ('2000-06-04',2,'ID',NULL,103), ('2000-02-01',7,'MG',1300000,722), ('2000-02-01',4,'MZ',200000,800), ('2001-01-26',2,'IN',10000,20023), ('2000-07-10',5,'PH', NULL,218), ('2000-11-25',7,'PH', NULL,48) and others; 
+
 -- 2006-2011
 CREATE TABLE fatalities_table_2 (
   number_of_fatalities INT,
@@ -124,12 +120,11 @@ CREATE TABLE fatalities_table_2 (
   country_code VARCHAR(10),
   natural_disaster_ID INT,
   date DATE, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  CONSTRAINT FK_country_code_fata2 FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID_fata2 FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
   
-INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11), ('2008-05-12', 2, 'CN', 13500000, 87587), and others;
-  
+INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11), ('2008-05-12', 2, 'CN', 13500000, 87587), ('2010-04-01', 3, 'RU', NULL, 55000), ('2010-08-15', 9, 'BO', 2300000, NULL), and others; 
+
 -- 2012-2017
 CREATE TABLE fatalities_table_3 (
   number_of_fatalities INT,
@@ -137,25 +132,22 @@ CREATE TABLE fatalities_table_3 (
   country_code VARCHAR(10),
   natural_disaster_ID INT,
   date DATE, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  CONSTRAINT FK_country_code_fata3 FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID_fata3 FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
 
-INSERT INTO fatalities_table_3 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2011-03-11', 2, 'JP', 3100, 19747), ('2011-07-25', 4, 'TH', 84000, 815), ('2012-10-22', 7, 'US', 5000, 233), and others;
+INSERT INTO fatalities_table_3 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2012-10-22', 7, 'US', 5000, 233), ('2013-06-17', 5, 'IN', 18000, 6054), ('2014-04-01', 2, 'CL', NULL, 6), and others; 
 
---2018-2022
+-- 2018-2022
 CREATE TABLE fatalities_table_4 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
   country_code VARCHAR(10),
   natural_disaster_ID INT,
   date DATE, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_natural_disaster_ID FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID), 
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
-  
-INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2022-08-01', 9, 'US', NULL, 2), 
-('2017-08-17', 7, 'US', 60000, 110), ('2017-09-16', 7, 'US', 1500, 130), ('2021-08-26', 7, 'US', 200, 107), ('2016-04-16', 2, 'JP', 10000, 226), and others;
+  CONSTRAINT FK_country_code_fata4 FOREIGN KEY (country_code) references countries(country_code),
+  CONSTRAINT FK_natural_disaster_ID_fata4 FOREIGN KEY (natural_disaster_ID) references types(natural_disaster_ID)); 
+ 
+ INSERT INTO fatalities_table_4 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2022-08-01', 9, 'US', NULL, 2), ('2021-08-26', 7, 'US', 200, 107), ('2021-09-07', 4, 'MX', 0, 17), ('2021-04-04', 4, 'ID', 170, 41), ('2021-10-15', 2, 'ID', 0, 4), ('2022-06-18', 4, 'IN', NULL, 18) and others;
 ```
 
 Table 5 (other impacts): 
@@ -165,11 +157,9 @@ CREATE TABLE other_impacts (
   date DATE,
   country_code VARCHAR(10),
   displaced_or_injured INT, 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date)); 
+  CONSTRAINT FK_country_code_impacts FOREIGN KEY (country_code) references countries(country_code)); 
   
-INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), ('2022-08-01','US', 2500), ('2005-08-23','US', 2000), ('2008-05-12', 'CN', 393035), ('2011-03-11', 'JP', 348798), ('2011-07-25', 'TH', 13600000), ('2012-10-22', 'US', 1000), 
-('2017-08-17', 'US', 30000), ('2017-09-16', 'US', 2000000), ('2021-08-26', 'US', 14000), ('2016-04-16', 'JP', 3129), and others;
+INSERT INTO other_impacts (date, country_code, displaced_or_injured) Values ('2004-10-23','JP', 4805), ('2007-07-16','JP', 1120), ('2022-08-01','US', 2500), ('2005-08-23','US', 2000), ('2008-05-12', 'CN', 393035), ('2011-03-11', 'JP', 348798), ('2011-07-25', 'TH', 13600000), ('2012-10-22', 'US', 1000), ('2017-08-17', 'US', 30000), ('2017-09-16', 'US', 2000000), ('2021-08-26', 'US', 14000), ('2016-04-16', 'JP', 3129), ('2001-01-29','AF',108000), ('2021-09-07', 'MX', 0), and others; 
   
 ```
 
@@ -181,11 +171,9 @@ CREATE TABLE recovery (
   country_code VARCHAR(10),
   days_to_recover INT,
   method_to_deal_with_disaster VARCHAR(5000), 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
+  CONSTRAINT FK_country_code_recovery FOREIGN KEY (country_code) references countries(country_code));  
   
-INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
-geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), ('2017-08-17', 'US', 1095, '$5.95 billion in federal funding + National Guard for search and rescue, recovery +  Cajun Navy: organization of volunteers + $72 million corporation donation + Others'), ('2017-09-16', 'US', 1460, 'Evacuation + Relief Supplies + Emergency Aid + £25 million funding + others'), ('2021-08-26', 'US', 60, 'Repairing transmission line + Donations/funds + 25,000 workers and 5000 national guards + Others'), ('2016-04-16', 'JP', 365, 'National and Kumamoto governments helping to cover expenses + Financial institution support + 170.4 million yen fund + Others'), and others;
+INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), and others; 
 
 ```
 
@@ -193,33 +181,28 @@ Tables 7 and 8 (economic impact):
 
 ```
 CREATE TABLE economic_impact_1 (
-  total_monetary_impact DEC(10,2),
+  total_monetary_impact DEC(10,3),
   date DATE,
   country_code VARCHAR(10), 
-  CONSTRAINT FK_country_code FOREIGN KEY (country_code) references countries(country_code),
-  CONSTRAINT FK_date FOREIGN KEY (date) references events(date));  
+  CONSTRAINT FK_country_code_econ1 FOREIGN KEY (country_code) references countries(country_code));  
   
- INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40.0, '2004-10-23', 'JP'), (173.0, '2005-08-23', 'US'), (107.0,'2008-05-12', 'CN'), (253.0, '2011-03-11', 'JP'), (48.0, '2011-07-25', 'TH'), (59.0, '2012-10-22', 'US'), (105.0, '2017-08-17', 'US'), (75.0, '2017-09-16', 'US'), (63.0, '2017-08-30', 'US'), (65.0, '2021-08-26', 'US'), (0.1,'2022-08-01', 'US'), (7.5, '2016-04-16', 'JP'), and others;
- 
- -- Note: Data from the international disasters database EM-DAT
+INSERT INTO economic_impact_1 (total_monetary_impact, date, country_code) Values (40.0, '2004-10-23', 'JP'), (173.0, '2005-08-23', 'US'), (107.0,'2008-05-12', 'CN'), (253.0, '2011-03-11', 'JP'), (48.0, '2011-07-25', 'TH'), (59.0, '2012-10-22', 'US'), (105.0, '2017-08-17', 'US'), (75.0, '2017-09-16', 'US'), (63.0, '2017-08-30', 'US'), (65.0, '2021-08-26', 'US') and others; 
   
  CREATE TABLE economic_impact_2 (
   percentage_of_global_GDP DEC(10,2),
   region VARCHAR(100)); 
   
- INSERT INTO economic_impact_2 (region, %_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
+INSERT INTO economic_impact_2 (region, percentage_of_global_GDP) Values ('World', 4.0), ('Europe', 0.7), ('Latin America and Caribbean', 3.0), ('North America', 4.1), ('East Asia and Pacific', 4.7), ('Sub-Saharan Africa', 6.1), ('Middle East and North Africa', 5.7), ('Central Asia', 6.6), ('South Asia', 15);
 
--- Note: the above data is a rough estimate taken from the S&P Global Ratings graph 
 ```
 
 Table 9 (support):
 
 ```
 CREATE TABLE support (
-  organisations VARCHAR(150),
-  amount VARCHAR(100),
+  organisations VARCHAR(500),
   country_unique_ID INT, 
-  CONSTRAINT FK_country_ID FOREIGN KEY (country_unique_ID) references countries(country_unique_ID)); 
+  CONSTRAINT FK_country_ID_support FOREIGN KEY (country_unique_ID) references countries(country_unique_ID)); 
   
 ```
 
@@ -271,7 +254,7 @@ The resulting output (part of it) from the events table is:
 - Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
-SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = 'JP'; 
+SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = 'JP';
 ```
 
 Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
@@ -334,6 +317,7 @@ CREATE VIEW species_impacted AS
 SELECT SUM(species_impacted) AS 'No. of animals impacted', country_code FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities WHERE country_code IN (SELECT country_code FROM events WHERE magnitude >= 6 AND natural_disaster_id = 2) GROUP BY country_code HAVING SUM(species_impacted) > 100; 
 
 -- Assessing wildlife impact of natural disasters: Total number of times greater than 100 animals were impacted by moderate to severe earthquakes 
+SELECT * FROM species_impacted; 
 SELECT COUNT(country_code) FROM species_impacted;
 
 ``` 
@@ -354,7 +338,7 @@ Note that the figures are based on only major natural disasters that have taken 
 - Number of massively destructive earthquakes (magnitude >= 6.0) by country
 
 ``` 
-SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6', country_code FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
+SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6', country_code FROM events WHERE magnitude >=6 AND natural_disaster_id = 2 GROUP BY country_code ORDER BY COUNT(country_code) desc;
 
 ``` 
 Given the current data collected, the output is:
@@ -365,9 +349,9 @@ From the output, it can be observed that Japan had the highest number of destruc
 ``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
 
-SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 AND natural_disaster_ID = 2;
+SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 AND natural_disaster_id = 2;
 
-SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events WHERE natural_disaster_ID = 2;
+SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events WHERE natural_disaster_id = 2;
 
 -- % of earthquakes that had a significant impact (magnitude >=6) is: 93 % during the period of 2000-2022 as of current data collection. 
 
@@ -415,7 +399,7 @@ SELECT * FROM magnitude_and_fatalities_view WHERE natural_disaster_ID = 2 ORDER 
 SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total number of fatalities' FROM ((SELECT * FROM fatalities_table_1) UNION ALL (SELECT * FROM fatalities_table_2) UNION ALL (SELECT * FROM fatalities_table_3) UNION ALL (SELECT * FROM fatalities_table_4)) AS all_fatalities_table2 GROUP BY country_code, natural_disaster_ID;  
 
 ```
-
+![magnitude and fatalities](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/magnitudeandfatalities.png)
 
 ### Further Questions/Extensions and Limitations 
 
