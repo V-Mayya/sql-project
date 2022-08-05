@@ -354,7 +354,7 @@ Note that the figures are based on only major natural disasters that have taken 
 - Number of massively destructive earthquakes (magnitude >= 6.0) by country
 
 ``` 
-SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
+SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6', country_code FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
 
 ``` 
 
