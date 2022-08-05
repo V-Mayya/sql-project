@@ -327,6 +327,7 @@ CREATE VIEW min_fatalities_by_country AS
 SELECT * FROM min_fatalities_by_country LIMIT 1;
 
 ```
+Given the amount of data collected, currently, the country with maximum fatalities is China (87,587). 
 
 - Number of species of wildlife impacted in countries that have had moderate to severe earthquakes
 
