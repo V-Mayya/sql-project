@@ -5,7 +5,7 @@ Given the recent wildfires in Australia, heat wave in Europe and other natural d
 
 The idea to create a project based around natural disasters was developed after reading the book 'Extreme Economies'. One of the incidents described in the book was about how Aceh (a province of Indonesia) managed to resume its daily operations almost immediately after disaster struck. The economic resilience and methods the region used to dampen the impact of the natural disaster inspired me to create this project.
 
-Since the project will be looking into major natural disasters during 2000-2022, data will only comprise of some major natural disasters where fatalities have been greater than 100 and some recent disasters with fatalities less than 100 (along with due to difficulty in researching information related to all disasters during the period - particularly older data close to 2000s).
+Since the project will be looking into major natural disasters during 2000-2022, data will only comprise of some major natural disasters where fatalities have been greater than 100 and some recent disasters with fatalities less than 100 (along with due to difficulty in researching information related to all disasters during the period - particularly older data close to 2000s). Since this is also an ongoing project (as missing data during the period 2000-2022 will be updated continuously as more research is done towards the remaining natural disasters). The output and analysis will therefore be different for each individual as it is based on the amount of data collected. 
  
 ### Implications
 
