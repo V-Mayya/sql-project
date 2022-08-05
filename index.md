@@ -357,8 +357,8 @@ Note that the figures are based on only major natural disasters that have taken 
 SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6', country_code FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
 
 ``` 
-
-
+Given the current data collected, the output is:
+![earthquakes destructive >= 6](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/earthquakesgraph.png)
 
 From the output, it can be observed that Japan had the highest number of destructive earthquakes during the period of 2000-2022. 
 
