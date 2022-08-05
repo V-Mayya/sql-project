@@ -365,11 +365,11 @@ From the output, it can be observed that Japan had the highest number of destruc
 ``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
 
-SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6;
+SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 AND natural_disaster_ID = 2;
 
-SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events;
+SELECT COUNT(country_code) AS 'Total number of earthquakes' FROM events WHERE natural_disaster_ID = 2;
 
--- % of earthquakes that had a significant impact (magnitude >=6) is: .. % during the period of 2000-2022. 
+-- % of earthquakes that had a significant impact (magnitude >=6) is: 93 % during the period of 2000-2022 as of current data collection. 
 
 ``` 
 
