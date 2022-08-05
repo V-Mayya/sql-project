@@ -186,9 +186,6 @@ CREATE TABLE recovery (
   
 INSERT INTO recovery (date, country_code, days_to_recover, method_to_deal_with_disaster) Values ('2004-10-23','JP', 365, 'Evacuate residents + Donation fund by Nomura Group + others'), ('2007-07-16','JP', 35, 'Data gathering using
 geographic information systems helped governmental agencies identify highest priority needs and direct resources + 160 billion Yen recovery fund + 19,926 volunteers + companies provided industry-specific mutual aid'), ('2022-08-01','US', NULL, 'Evacuate residents + Government assistance such as disaster unemployment assistance + Others'), ('2005-08-23','US', 550, 'Federal Emergency Management Agency (FEMA) preparation + volunteers + Joint Task Force (JTF) Katrina troops + housing assistance'), ('2008-05-12', 'CN', 730, 'Optimization of the urban layout during reconstruction + Provision of Health services + 300 billion yuan by government + Others'), ('2011-03-11', 'JP', 3650, 'Mobilized Self-Defence Forces + $1 billion donation fund by Japanese Red Cross + others'), ('2011-07-25', 'TH', 365, '24/7 Emergency Operation Center for Flood, Storm and Landslide + Extra flood-relief budgets/funds + Volunteers +  Flood Relief Operations Center (FROC) + Others' ), ('2012-10-22', 'US', 1095, '$17 million fund for American Red Cross + News Corporation donated $1 million + United Nations and World Food Programme: humanitarian aid + Others'), ('2017-08-17', 'US', 1095, '$5.95 billion in federal funding + National Guard for search and rescue, recovery +  Cajun Navy: organization of volunteers + $72 million corporation donation + Others'), ('2017-09-16', 'US', 1460, 'Evacuation + Relief Supplies + Emergency Aid + £25 million funding + others'), ('2021-08-26', 'US', 60, 'Repairing transmission line + Donations/funds + 25,000 workers and 5000 national guards + Others'), ('2016-04-16', 'JP', 365, 'National and Kumamoto governments helping to cover expenses + Financial institution support + 170.4 million yen fund + Others'), and others;
-   
-
--- include the word fund if donation or gov. grant above: del this later 
 
 ```
 
@@ -350,7 +347,7 @@ SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM eve
 
 ``` 
 
-A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. In this instance, it amounts to:  
+A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. 
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
