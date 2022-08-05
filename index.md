@@ -265,18 +265,9 @@ END//
 SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID) AS 'Magnitude Scale' FROM events; 
     
 ```
-The resulting output from the events table is:
+The resulting output (part of it) from the events table is:
 
-| date | natural_disaster_ID | magnitude | Magnitude Scale | 
-
-|  |  | 
-|  |  |
-|  |  |
-| | | 
-| |  |
-|  | |
-| |  |
-| |  |
+![Stored function output (partly)] (https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/storedfunctionoutput.png)
 
 ### Queries for Data Analysis
 
