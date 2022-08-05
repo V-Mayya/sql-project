@@ -347,7 +347,7 @@ SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM eve
 
 ``` 
 
-A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. 
+A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. Given the amount of data collected so far, this amounts to around 31% which is a relatively high figure (4/13 times). 
 
 Note that the figures are based on only major natural disasters that have taken place and might not account for all types of wildlife species impacted. 
 
@@ -357,10 +357,10 @@ Note that the figures are based on only major natural disasters that have taken 
 SELECT COUNT(country_code), country_code AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >=6 GROUP BY country_code ORDER BY COUNT(country_code) desc;
 
 ``` 
-Output: 
 
 
-From the output, it can be observed that ... country had the highest number of destructive earthquakes during the period of 2000-2022. ....
+
+From the output, it can be observed that Japan had the highest number of destructive earthquakes during the period of 2000-2022. 
 
 ``` 
 -- And to generally find out number of massively destructive earthquakes (magnitude > 6) during 2000-2022 in % to total number of earthquakes 
