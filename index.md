@@ -116,7 +116,7 @@ CREATE TABLE fatalities_table_1 (
 INSERT INTO fatalities_table_1 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2004-10-23', 2, 'JP', 5000, 68), 
 ('2005-08-23', 7, 'US', 400000, 1836), and others;
   
--- 2005-2010
+-- 2006-2011
 CREATE TABLE fatalities_table_2 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -129,7 +129,7 @@ CREATE TABLE fatalities_table_2 (
   
 INSERT INTO fatalities_table_2 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2007-07-16', 2, 'JP', NULL, 11), ('2008-05-12', 2, 'CN', 13500000, 87587), and others;
   
--- 2010-2015
+-- 2012-2017
 CREATE TABLE fatalities_table_3 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
@@ -142,7 +142,7 @@ CREATE TABLE fatalities_table_3 (
 
 INSERT INTO fatalities_table_3 (date, natural_disaster_ID, country_code, species_impacted, number_of_fatalities) Values ('2011-03-11', 2, 'JP', 3100, 19747), ('2011-07-25', 4, 'TH', 84000, 815), ('2012-10-22', 7, 'US', 5000, 233), and others;
 
---2015-2022
+--2018-2022
 CREATE TABLE fatalities_table_4 (
   number_of_fatalities INT,
   species_impacted VARCHAR(55),
