@@ -17,6 +17,7 @@ The creation of this project is intended to:
 ### Setting up tables, columns and ER diagram
 
 **ER DIAGRAM**
+
 ![ER Diagram of Database](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/ERdiagramnew.png)
 
 **COUNTRIES**: country_unique_ID, country_code, countries where disaster struck along with their respective regions
