@@ -267,22 +267,29 @@ SELECT date, natural_disaster_ID, magnitude, magnitude_scale(natural_disaster_ID
 ```
 The resulting output (part of it) from the events table is:
 
-![Stored function output (partly)] (https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/storedfunctionoutput.png)
+![Stored Function (partly)](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/storedfunctionoutput.png)
 
 ### Queries for Data Analysis
 
 - Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
-SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = .. GROUP BY country_code ORDER BY total_monetary_impact DESC; 
+SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = 'JP'; 
 ```
 
 Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
 
 If a country has been able to sustain its economy well despite large monetary damages due to natural disasters, other countries can try utilising methods the country has used to cope with the aftermath of the disaster. 
 
-In the case of Japan, total economic damage of major natural disasters during the period was around .... Japan's economy as of 2022 is ...
-Learning more about Japan's economic resilience can help other countries build plans and policies to deal with such issues. 
+In the case of Japan, total economic damage of major natural disasters during the period was around 300.5 billion dollars. Learning more about Japan's economic resilience can help other countries build plans and policies to deal with such issues. 
+
+To find out about the economic impact by country:
+
+```
+SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 GROUP BY country_code ORDER BY SUM(total_monetary_impact) DESC;
+```
+
+![Economic Impact 1](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/monetaryimpact.png)
 
 ```
 SELECT percentage_of_global_GDP, region FROM economic_impact_2 ORDER BY percentage_of_global_GDP desc; 
