@@ -255,7 +255,7 @@ The resulting output (part of it) from the events table is:
 - Economic impact to a particular country (Japan chosen as an example) over the years of 2000-2022 demonstrated through the query shown as follows 
 
 ```
-SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 WHERE country_code = 'JP';
+SELECT SUM(total_monetary_impact) AS 'Total Monetary Impact', country_code FROM economic_impact_1 WHERE country_code = 'JP';
 ```
 
 Based on the locations of countries that have faced the greatest economic impact in terms of monetary damage over the years of 2000-2022, economic resilience of the country can be analysed by comparing economic indicators of the country (in terms of GDP and other indices) to other countries along with the data that results from the query. 
@@ -267,7 +267,7 @@ In the case of Japan, total economic damage of major natural disasters during th
 To find out about the economic impact by country:
 
 ```
-SELECT SUM(total_monetary_impact), country_code FROM economic_impact_1 GROUP BY country_code ORDER BY SUM(total_monetary_impact) DESC;
+SELECT SUM(total_monetary_impact) AS 'Total Monetary Impact', country_code FROM economic_impact_1 GROUP BY country_code ORDER BY SUM(total_monetary_impact) DESC;
 ```
 
 ![Economic Impact 1](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/monetaryimpact.png)
@@ -330,7 +330,6 @@ This can then be compared with total number of earthquakes of magnitude greater 
 
 ``` 
 SELECT COUNT(country_code) AS 'Number of earthquakes of magnitude >= 6' FROM events WHERE magnitude >= 6 AND natural_disaster_id = 2; 
-
 ``` 
 
 A percentage can be established that will demonstrate the % that more than 100 animals/wildlife were impacted during moderate to severe earthquakes. This will demonstrate the true impact of one type of natural disaster on wildlife. Given the amount of data collected so far, this amounts to around 31% which is a relatively high figure (4/13 times). 
