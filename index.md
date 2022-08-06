@@ -204,6 +204,8 @@ CREATE TABLE support (
   country_unique_ID INT, 
   CONSTRAINT FK_country_ID_support FOREIGN KEY (country_unique_ID) references countries(country_unique_ID)); 
   
+INSERT INTO support (country_unique_ID, organisations) Values (108, 'Nomura Group + Japanese Red Cross Others'), (228, 'Federal Emergency Management Agency (FEMA) + American Red Cross + News Corporation + United Nations and World Food Programme + Others'), (214, 'Flood Relief Operations Centre (FROC) + Others' ), (1, 'WFP and OCHA: relief materials +Others'), (129, 'UNICEF supplies + World Food Programme +  Organisation of African Unity + Others'), (101, 'Red Cross Support + BNPB food packages + Others'), (100, 'World Bank and the Asian Development Bank: loans + Nehru Institute of Mountaineering (NIM): Rebuilding Kedarnath + Others'), (65, 'USAID + Others'), (200,'International Federation of Red Cross and Red Crescent Societies (IFRC) + South African Red Cross Society (SARCS) + Others') and others; 
+  
 ```
 
 Creating a trigger to capitalise organisations:
@@ -401,6 +403,13 @@ SELECT natural_disaster_ID, country_code, SUM(number_of_fatalities) AS 'Total nu
 
 ```
 ![magnitude and fatalities](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/magnitudeandfatalities.png)
+
+- Total number of displaced/injured individuals and organisations that offered support by country
+
+```
+SELECT c.country_code, SUM(d.displaced_or_injured) AS 'Total displaced or injured', e.organisations AS 'Organisations that have offered help' FROM other_impacts d INNER JOIN countries c ON d.country_code = c.country_code  INNER JOIN support e ON c.country_unique_ID = e.country_unique_ID GROUP BY c.country_code, e.organisations ORDER BY SUM(d.displaced_or_injured) desc;  
+```
+![total displaced/injured and organisations that have offered support](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/totaldisplaced.png)
 
 ### Further Questions/Extensions and Limitations 
 
