@@ -80,7 +80,6 @@ CREATE TABLE types (
 INSERT INTO types (natural_disaster_ID, type) Values (1, 'Drought'), (2, 'Earthquake'), (3, 'Extreme Temperature'), (4, 'Flood'), (5, 'Landslide'), (6, 'Mass Movement'), (7, 'Storm/Cyclone/Hurricane'), (8, 'Volcanic activity'), (9, 'Wildfire'), (10, 'Tsunami'); 
 
 ```
-![Natural Disaster Types Table](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/types.png)
 
 Table 3 (events): 
 
