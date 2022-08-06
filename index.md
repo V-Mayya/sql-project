@@ -321,6 +321,7 @@ SELECT * FROM species_impacted;
 SELECT COUNT(country_code) FROM species_impacted;
 
 ``` 
+![Impact of earthquakes on wildlife](https://raw.githubusercontent.com/V-Mayya/sql-project/gh-pages/animalsimpacted.png ) 
 
 According to the earthquake magnitude scale, magnitudes greater than 6 can cause severe destruction. The subquery will allow the user to find the countries and their respective number of animals impacted for all moderate to severe earthquakes where number of species impacted were greater than 100. 
 
