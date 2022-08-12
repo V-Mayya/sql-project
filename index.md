@@ -5,7 +5,7 @@ Given the recent wildfires in Australia, heat wave in Europe and other natural d
  
 The idea to create a project based around natural disasters was developed after reading the book 'Extreme Economies'. One of the incidents described in the book was about how Aceh (a province of Indonesia) managed to resume its daily operations almost immediately after disaster struck. The economic resilience and methods the region used to dampen the impact of the natural disaster inspired me to create this project.
 
-Since the project will be looking into major natural disasters during 2000-2022, data will only comprise of some major natural disasters where fatalities have been greater than 100 and some recent disasters with fatalities less than 100 (along with due to difficulty in researching information related to all disasters during the period - particularly older data close to 2000s). Since this is also an ongoing project (as missing data during the period 2000-2022 will be updated continuously as more research is done towards the remaining natural disasters), the output and analysis will be different for each individual as it is based on the amount of data collected.  
+Since the project will be looking into major natural disasters during 2000-2022, data will only comprise of some major natural disasters where fatalities have been greater than 100 and some recent disasters with fatalities less than 100 (also due to difficulty in researching information related to all disasters during the period - particularly older data). Since this is also an ongoing project (as missing data during the period 2000-2022 will be updated continuously as more research is done towards the remaining natural disasters), the output and analysis will be different for each individual as it is based on the amount of data collected.  
  
 ### Implications
 
@@ -370,7 +370,7 @@ U.S.A had the highest number of hurricanes during the period of 2000-2022 as of 
 
 - Importance of certain methods used to deal with disaster
 
-The importance of certain methods to deal with the disaster can be analysed by conducting a query to identify the number of incidents where a certain method has been used (in this instance, the importance of funds for disaster relief). 
+The importance of certain methods to deal with the disaster can be analysed by creating a query to identify the number of incidents where a certain method has been used (in this instance, the importance of funds for disaster relief). 
 
 ``` 
 -- Number of times 'funds' were a method used to deal with aftermath of disaster 
@@ -383,7 +383,7 @@ The above result can be compared with the total number of disasters to establish
 
 - Establishing other trends
 
-Other trends can be identified by changing the GROUP BY condition accordingly or by using JOIN statements. For example, a trend can be established with magnitudes of a certain disaster such as earthquakes, number of fatalities and dates of disasters. By first getting data using the SELECT statement, a graph with time as the independent variable and other variables such as number of fatalities and magnitudes as the dependent variables can be used to derive relationships.
+Other trends can be identified by changing the GROUP BY condition accordingly or using JOIN statements. For example, a trend can be established with magnitudes of a certain disaster such as earthquakes, number of fatalities and dates of disasters. By first getting data using the SELECT statement, a graph with time as the independent variable and other variables such as number of fatalities and magnitudes as the dependent variables can be used to derive relationships.
 
 In this instance, a causal relationship between magnitudes of earthquake and number of fatalities over time cannot be established (despite a priori hypothesis and intuition). In most instances, since correlation is not causation, more information is needed to establish trends. 
 
