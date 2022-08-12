@@ -421,9 +421,9 @@ Extensions:
 - Extend the stored function to give an output of NULL if magnitude = NULL (AND natural_disaster_ID = either one of the numbers) 
 
 Limitations: 
-- Natural disasters accounts for only small number of fatalities/gdp loss compared to other incidents but is still equally impactful 
+- Natural disasters accounts for only a small number of fatalities/GDP loss compared to other incidents but are still equally impactful 
 - Other types of disasters are not included 
-- Impact of natural disasters can be measured not only through the number of fatalities, displaced individuals and economic impact but also through other ways such as number of business re-openings after disaster, population growth and more 
+- Impact of natural disasters can be measured not only through the number of fatalities, displaced individuals and economic impact but also through other ways such as number of business re-openings after a disaster, population growth and more 
 
 ### References 
 - https://ourworldindata.org/natural-disasters
