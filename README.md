@@ -1,7 +1,7 @@
 # Natural Disasters (CFG Personal Project) 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73D3D&width=435&lines=SQL+Project+%F0%9F%92%BB;Data+Analysis+%26+Interpretation+%F0%9F%94%A2;Visualisations+%F0%9F%8F%9E%EF%B8%8F)](https://git.io/typing-svg)
 
 ---
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73D3D&width=435&lines=SQL+Project+%F0%9F%92%BB;Data+Analysis+%26+Interpretation+%F0%9F%94%A2;Visualisations+%F0%9F%8F%9E%EF%B8%8F)](https://git.io/typing-svg)
 
 ‣ Given the recent wildfires in Australia, heat wave in Europe and other natural disasters over the years, my project will be exploring the impact and methods that nations have used to deal with the aftermath of such disasters. 
 
