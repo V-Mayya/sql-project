@@ -1,7 +1,8 @@
 # Natural Disasters (CFG Personal Project) 
 
 ---
-[Image of a Tree](SimonWilkesUnsplash.png)
+
+<img src="SimonWilkesUnsplash.png" width="435" height="350" />
 
 ‣ Given the recent wildfires in Australia, heat wave in Europe and other natural disasters over the years, my project will be exploring the impact and methods that nations have used to deal with the aftermath of such disasters. 
 
